@@ -1,0 +1,67 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { getImagePathByName } from '../utils/imageMapper';
+
+/**
+ * BookCard
+ * Props:
+ * - item: { id, title, author, price, image, description }
+ * - onAction: function(item) for primary button (optional)
+ * - actionLabel: string for button text (default: 'สั่งเลย')
+ */
+function BookCard({ item, onAction, actionLabel = 'สั่งเลย' }) {
+  const { id, title, author, price, image, description } = item || {};
+  const displayTitle = title || item?.name || 'Untitled';
+  const displayAuthor = author || item?.subCategory || '';
+  const displayPrice = price || item?.price || null;
+
+  const handleAction = () => {
+    console.log('BookCard: action clicked for', item && item.id);
+    if (onAction) onAction(item);
+  };
+
+  // prefer explicit image field, otherwise try to map by Thai name
+  const resolved = image || getImagePathByName(item?.name || displayTitle);
+  const imageSrc = resolved ? (process.env.PUBLIC_URL + resolved) : null;
+
+  return (
+    <article className="menu-item-card">
+      <div className="menu-card-image" aria-hidden>
+        {imageSrc ? (
+          <img src={imageSrc} alt={displayTitle} className="menu-card-img" />
+        ) : (
+          <div className="image-surface" />
+        )}
+
+        {/* featured badge */}
+        {item && item.featured && (
+          <div className="category-badge">แนะนำ</div>
+        )}
+      </div>
+
+      <div className="card-body">
+        <div className="card-title-row">
+          <h3 className="card-title">{displayTitle}</h3>
+        </div>
+
+        {displayAuthor && <p className="card-desc">{displayAuthor}</p>}
+
+        {description && <p className="card-desc" style={{ marginTop: '0.4rem' }}>{description}</p>}
+
+        <div className="price-row">
+          <div className="price-block">
+            <span className="price-main">{displayPrice ? `${displayPrice} บาท` : ''}</span>
+          </div>
+
+          {onAction ? (
+            <button onClick={handleAction} className="order-btn">{actionLabel}</button>
+          ) : (
+            <Link to={`/menu/${id}`} className="order-btn">{actionLabel}</Link>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export default BookCard;

@@ -1,0 +1,447 @@
+/* src/components/HomePage.css */
+
+/* ---------- COLOR THEME ---------- */
+:root {
+  --cafe-cream: #F8F4E1;
+  --cafe-latte: #AF8F6F;
+  --cafe-mocha: #74512D;
+  --cafe-espresso: #543310;
+}
+
+/* ---------- LAYOUT พื้นหลังรวม ---------- */
+.menu-page {
+  background: radial-gradient(circle at top, #fbeed2 0, var(--cafe-cream) 40%, #f8f4e1 100%);
+  min-height: 100vh;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.homepage {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+/* ---------- HERO SECTION ---------- */
+
+.homepage-hero.hero-banner {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  min-height: 380px;
+  display: flex;
+  /* use positioning for title/button so content can sit independently */
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 0; /* inner positioning uses absolute elements */
+  box-shadow: 0 26px 64px rgba(84, 51, 16, 0.2);
+  transform-origin: center;
+  transition: transform 0.18s ease;
+}
+
+/* hero background image (uses public/coffee-shop-1448x543.webp) */
+.homepage-hero.hero-banner {
+  background-image: url('../coffee-shop-1448x543.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* background layer inside hero for images */
+.homepage-hero .hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0; /* below overlay and content */
+}
+
+/* ensure content sits above background and overlay */
+.homepage-hero .hero-top-title,
+.homepage-hero .hero-subtitle,
+.homepage-hero .hero-cta {
+  z-index: 2;
+}
+
+/* overlay มืดให้ตัวหนังสืออ่านง่าย */
+.homepage-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* combine radial + subtle linear to create focus and preserve readability */
+  background: radial-gradient(circle at 30% 22%, rgba(0,0,0,0.56) 0%, rgba(0,0,0,0.36) 28%, rgba(0,0,0,0.20) 54%, rgba(0,0,0,0.08) 84%),
+              linear-gradient(120deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.08) 70%);
+  mix-blend-mode: multiply;
+}
+
+/* ข้อความบน hero */
+.hero-top-title {
+  position: absolute;
+  top: 1.6rem;
+  left: 1.6rem;
+  right: auto;
+  transform: none;
+
+  font-size: clamp(1rem, 2.6vw, 2rem);
+  font-weight: 900;
+  color: #fff;
+  max-width: 68%;
+  text-align: left;
+  line-height: 1.02;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+
+  /* glass / translucent background with stronger blur */
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+  backdrop-filter: blur(8px) saturate(120%);
+  /* keep title text white for better contrast on hero image */
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.34);
+  text-shadow: 0 8px 22px rgba(0,0,0,0.46);
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hero-subtitle {
+  position: absolute;
+  top: calc(1.6rem + 3.2rem);
+  left: 1.6rem;
+  color: rgba(248,244,225,0.95);
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.95;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.32);
+}
+
+/* (Replaced old .cta-btn.hero-cta block with .hero-cta -- see bottom of file) */
+
+.cta-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  margin-right: 0.45rem;
+  flex-shrink: 0;
+}
+
+/* ---------- UTILITIES (ให้ใช้กับ div className="max-w-6xl mx-auto px-4") ---------- */
+
+.max-w-6xl {
+  max-width: 1120px;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* ---------- SECTION เมนูแนะนำ ---------- */
+
+.menu-grid-wrapper {
+  margin-top: 1.5rem;
+}
+
+/* 'ดูทั้งหมด' small button in recommended header */
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.38rem 0.9rem;
+  border-radius: 999px;
+  background: #F8F4E1; /* requested color */
+  color: var(--cafe-espresso);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(84,51,16,0.08);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.view-all-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(84,51,16,0.12);
+}
+.view-all-btn:active {
+  transform: translateY(0);
+}
+
+/* grid การ์ดเมนู */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.1rem;
+}
+
+/* ---------- CARD STYLE (ใช้ร่วมกับหน้าเมนูได้) ---------- */
+
+.menu-item-card {
+  background: linear-gradient(180deg, #fffdf7 0%, #ffffff 60%);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(175, 143, 111, 0.12);
+  box-shadow: 0 14px 34px rgba(84, 51, 16, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  position: relative;
+}
+
+.menu-item-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(84, 51, 16, 0.16);
+  border-color: rgba(175, 143, 111, 0.28);
+}
+
+/* ส่วนรูปด้านบนของการ์ด (ตอนนี้เป็นพื้นเฉย ๆ ไว้เผื่อใส่รูปในอนาคต) */
+.menu-card-image {
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+  min-height: 130px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-card-image .menu-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.menu-card-image .image-surface {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(253,233,201,0.6) 0, rgba(248,244,225,0.45) 55%);
+}
+
+/* badge “แนะนำ” */
+.category-badge {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--cafe-espresso);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border: 1px solid rgba(175, 143, 111, 0.25);
+}
+
+/* เนื้อในการ์ด */
+.card-body {
+  padding: 0.9rem 1rem 1.05rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  flex: 1;
+}
+
+.card-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cafe-espresso);
+  margin: 0;
+}
+
+.card-desc {
+  font-size: 0.85rem;
+  color: #7a6751;
+  margin: 0;
+}
+
+/* แถวราคา + ปุ่ม */
+.price-row {
+  display: flex;
+  align-items: center;
+  margin-top: 0.6rem;
+  gap: 0.7rem;
+}
+
+.price-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-main {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--cafe-espresso);
+}
+
+.price-unit {
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-left: 2px;
+  color: rgba(84, 51, 16, 0.9);
+}
+
+/* ปุ่มสั่งเลยในการ์ด */
+.order-btn {
+  margin-left: auto;
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(180deg, var(--cafe-espresso), #4a2a12);
+  color: var(--cafe-cream);
+  box-shadow: 0 12px 28px rgba(84, 51, 16, 0.16);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  white-space: nowrap;
+}
+
+.order-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px rgba(84, 51, 16, 0.22);
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 768px) {
+  .homepage {
+    padding: 2.5rem 1.1rem 3rem;
+  }
+
+  .homepage-hero.hero-banner {
+    padding: 0;
+    min-height: 220px;
+  }
+
+  .hero-top-title {
+    position: absolute;
+    top: 1.1rem;
+    left: 1.1rem;
+    right: 1.1rem;
+    max-width: 100%;
+    font-size: clamp(1.1rem, 4.2vw, 1.5rem);
+    padding: 0.45rem 0.7rem;
+    border-radius: 10px;
+    text-align: center;
+    white-space: normal;
+  }
+  /* responsive adjustments for hero CTA are handled by .hero-cta later */
+  .hero-subtitle { left: 1.1rem; top: 3.6rem; font-size: 0.94rem; }
+}
+
+/* ปุ่มดูเมนูทั้งหมด ใช้ฟีลเดียวกับปุ่ม Home บน navbar */
+.hero-cta {
+  /* positioning only — visual style comes from .order-btn */
+  position: absolute;
+  right: 1.6rem;
+  bottom: 1.6rem;
+  min-width: 120px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ไฮไลต์มันวาวเหมือนปุ่ม Home */
+.hero-cta::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 6%;
+  height: 36%;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.28),
+    rgba(255,255,255,0.06)
+  );
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.hero-cta::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 8%;
+  height: 18%;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.22),
+    rgba(255,255,255,0.02)
+  );
+  border-radius: 999px;
+  filter: blur(0.6px);
+  pointer-events: none;
+}
+
+/* When the hero CTA also uses the order-btn visual, hide the decorative overlays
+   so the button looks exactly like other .order-btn elements */
+.hero-cta.order-btn::after,
+.hero-cta.order-btn::before {
+  display: none;
+}
+
+/* ensure anchors with .order-btn receive the same flow/padding as real buttons */
+.hero-cta.order-btn {
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+}
+
+/* Remove the darker bottom gradient for the top hero CTA so it renders
+   as a single flat brown color (keep text white for contrast) */
+.hero-cta.order-btn {
+  /* use requested light cream background and dark text */
+  background: #F8F4E1 !important;
+  background-image: none !important;
+  box-shadow: 0 8px 20px rgba(84,51,16,0.08);
+  color: var(--cafe-espresso) !important;
+  border: 1px solid rgba(84,51,16,0.08);
+}
+
+/* Hover: slightly lift and darken border for affordance */
+.hero-cta.order-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(84,51,16,0.12);
+  border-color: rgba(84,51,16,0.12);
+}
+
+.hero-cta:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 22px 52px rgba(42, 24, 12, 0.32),
+    inset 0 3px 10px rgba(255,255,255,0.06);
+}
+
+.hero-cta:active {
+  transform: translateY(0) scale(0.995);
+  background: linear-gradient(180deg, #5b2f1b 0%, #2f170c 100%);
+  box-shadow:
+    0 8px 18px rgba(40,24,14,0.18) inset,
+    0 6px 10px rgba(0,0,0,0.06);
+}
+
+/* ปรับตำแหน่งบนหน้าจอเล็ก */
+@media (max-width: 768px) {
+  .hero-cta {
+    right: 1.1rem;
+    bottom: 1.1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.92rem;
+  }
+}
