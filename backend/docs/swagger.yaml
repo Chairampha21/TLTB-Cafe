@@ -1,0 +1,350 @@
+basePath: /api/v1
+definitions:
+  main.Dessert:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      price:
+        type: number
+      sub_category:
+        type: string
+    type: object
+  main.Drink:
+    properties:
+      description:
+        type: string
+      drink_type:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      price:
+        type: number
+      sub_category:
+        type: string
+    type: object
+  main.Food:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      price:
+        type: number
+      sub_category:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Simple API for cafe menu
+  title: TLTB Cafe API
+  version: "1.0"
+paths:
+  /desserts:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Dessert'
+            type: array
+      summary: List desserts
+      tags:
+      - Desserts
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: dessert data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/main.Dessert'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.Dessert'
+      summary: Create dessert
+      tags:
+      - Desserts
+  /desserts/{name}:
+    delete:
+      parameters:
+      - description: Dessert name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+      summary: Delete desserts by name
+      tags:
+      - Desserts
+    get:
+      parameters:
+      - description: Dessert name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Dessert'
+            type: array
+      summary: Get desserts by name
+      tags:
+      - Desserts
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dessert name
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: Updated dessert data (อัปเดตทุกแถวที่ชื่อนี้)
+        in: body
+        name: dessert
+        required: true
+        schema:
+          $ref: '#/definitions/main.Dessert'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+      summary: Update desserts by name
+      tags:
+      - Desserts
+  /drinks:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Drink'
+            type: array
+      summary: List drinks
+      tags:
+      - Drinks
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: drink data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/main.Drink'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.Drink'
+      summary: Create drink
+      tags:
+      - Drinks
+  /drinks/{name}:
+    delete:
+      parameters:
+      - description: Drink name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+      summary: Delete drinks by name
+      tags:
+      - Drinks
+    get:
+      parameters:
+      - description: Drink name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Drink'
+            type: array
+      summary: Get drinks by name
+      tags:
+      - Drinks
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Drink name
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: Updated drink data (จะอัปเดตทุกแถวที่ชื่อนี้)
+        in: body
+        name: drink
+        required: true
+        schema:
+          $ref: '#/definitions/main.Drink'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+      summary: Update drinks by name
+      tags:
+      - Drinks
+  /foods:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Food'
+            type: array
+      summary: List foods
+      tags:
+      - Foods
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: food data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/main.Food'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.Food'
+      summary: Create food
+      tags:
+      - Foods
+  /foods/{name}:
+    delete:
+      parameters:
+      - description: Food name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+      summary: Delete foods by name
+      tags:
+      - Foods
+    get:
+      parameters:
+      - description: Food name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Food'
+            type: array
+      summary: Get foods by name
+      tags:
+      - Foods
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Food name
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: Updated food data (อัปเดตทุกแถวที่ชื่อนี้)
+        in: body
+        name: food
+        required: true
+        schema:
+          $ref: '#/definitions/main.Food'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+      summary: Update foods by name
+      tags:
+      - Foods
+swagger: "2.0"
