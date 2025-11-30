@@ -64,7 +64,10 @@ function AllFoodPage({ onAddToCart }) {
             </div>
 
             {/* Food Table */}
-            <div style={{ overflowX: 'auto', borderRadius: '0.75rem', boxShadow: '0 4px 12px rgba(84, 51, 16, 0.1)' }}>
+            <div className="table-top-controls" style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '0.6rem' }}>
+              <button onClick={() => navigate('/admin/add-food')} className="btn btn-primary add-btn">＋ เพิ่มเมนู</button>
+            </div>
+            <div className="table-card" style={{ overflowX: 'auto', borderRadius: '0.75rem', boxShadow: '0 4px 12px rgba(84, 51, 16, 0.1)' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: 'white' }}>
                 <thead>
                   <tr style={{ backgroundColor: 'var(--cafe-mocha)', color: 'white' }}>

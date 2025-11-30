@@ -39,24 +39,36 @@ function EditFoodPage() {
 
   const handleSave = (e) => {
     e.preventDefault();
-    const idx = menuItems.findIndex((m) => m.id === itemId);
-    if (idx === -1) {
-      Swal.fire({ title: 'ผิดพลาด', text: 'ไม่สามารถบันทึกข้อมูล', icon: 'error' });
-      return;
-    }
+    // ask for confirmation before updating
+    Swal.fire({
+      title: 'ยืนยันการบันทึก',
+      html: `<strong>${form.name || '(ไม่มีชื่อ)'}</strong><br/>หมวดหมู่: ${form.category || '-'}<br/>ราคา: ฿${form.price || 0}`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'บันทึก',
+      cancelButtonText: 'ยกเลิก',
+    }).then((result) => {
+      if (!result.isConfirmed) return;
 
-    // Preserve existing isAvailable value; update other fields
-    menuItems[idx] = {
-      ...menuItems[idx],
-      name: form.name,
-      category: form.category,
-      price: form.price,
-      isAvailable: typeof menuItems[idx].isAvailable === 'boolean' ? menuItems[idx].isAvailable : true,
-      description: form.description,
-    };
+      const idx = menuItems.findIndex((m) => m.id === itemId);
+      if (idx === -1) {
+        Swal.fire({ title: 'ผิดพลาด', text: 'ไม่สามารถบันทึกข้อมูล', icon: 'error' });
+        return;
+      }
 
-    Swal.fire({ title: 'บันทึกสำเร็จ', icon: 'success', timer: 1200, showConfirmButton: false });
-    navigate(-1);
+      // Preserve existing isAvailable value; update other fields
+      menuItems[idx] = {
+        ...menuItems[idx],
+        name: form.name,
+        category: form.category,
+        price: form.price,
+        isAvailable: typeof menuItems[idx].isAvailable === 'boolean' ? menuItems[idx].isAvailable : true,
+        description: form.description,
+      };
+
+      Swal.fire({ title: 'บันทึกสำเร็จ', icon: 'success', timer: 1200, showConfirmButton: false });
+      navigate(-1);
+    });
   };
 
   return (

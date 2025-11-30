@@ -8,6 +8,7 @@ import MenuPage from "./pages/MenuPage";
 import ContactPage from "./pages/ContactPage";
 import AllFoodPage from "./pages/AllFoodPage";
 import EditFoodPage from "./pages/EditFoodPage";
+import AddPage from "./pages/AddPage";
 import NavBar from "./components/NavBar";
 import AuthModal from "./components/AuthModal";
 import { getMenuItemById } from "./data/menuData";
@@ -128,6 +129,7 @@ function App() {
         <Route path="/menu" element={<MenuPage onAddToCart={openOrderFor} onOpenAuth={() => setAuthOpen(true)} />} />
         <Route path="/contact" element={<ContactPage onAddToCart={openOrderFor} onOpenAuth={() => setAuthOpen(true)} />} />
         <Route path="/admin/all-food" element={<ProtectedAdminRoute element={<AllFoodPage onAddToCart={openOrderFor} />} />} />
+        <Route path="/admin/add-food" element={<ProtectedAdminRoute element={<AddPage />} />} />
         <Route path="/admin/edit-food/:id" element={<ProtectedAdminRoute element={<EditFoodPage />} />} />
       </Routes>
 

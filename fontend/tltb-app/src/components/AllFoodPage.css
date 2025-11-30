@@ -192,4 +192,9 @@
 
 .back-btn { border-radius: 999px; padding: 0.45rem 1.1rem; font-weight:700; box-shadow: 0 12px 28px rgba(84, 51, 16, 0.16); }
 
+.add-btn { padding: 0.5rem 1rem; border-radius: 0.9rem; font-size: 0.95rem; box-shadow: 0 14px 30px rgba(84,51,16,0.12); }
+
 .table-card { border-radius: 0.75rem; overflow: hidden; }
+
+.table-top-controls { display: flex; justify-content: flex-end; margin-bottom: 0.2rem; margin-top: -1.8rem; }
+.table-top-controls .add-btn { padding: 0.5rem 1rem; border-radius: 0.9rem; box-shadow: 0 14px 30px rgba(84,51,16,0.12); }
