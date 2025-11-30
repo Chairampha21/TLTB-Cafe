@@ -52,6 +52,7 @@ function BookCard({ item, onAction, onAddToCart, actionLabel = 'สั่งเ�
   };
 
   // เลือกรูป
+  const hasExplicitImage = Boolean(image && String(image).trim());
   const resolved = image || getImagePathByName(item?.name || displayTitle);
   const resolved2 =
     resolved ||
@@ -59,16 +60,22 @@ function BookCard({ item, onAction, onAddToCart, actionLabel = 'สั่งเ�
     getImagePathByName(item?.category);
   const best = resolved2 || getImageForItem(item);
   const fallback = '/images/food-cover/toast_milk.png';
-  const imageSrc = (process.env.PUBLIC_URL || '') + (best || fallback);
+
+  // If the item is marked as "new" and there is no explicit image provided,
+  // do not show the generic fallback image. This lets new cards be created
+  // without requiring an image while preserving the appearance for existing
+  // items that do have images or mapped images.
+  const useFallback = !(item && item.isNew === true && !hasExplicitImage);
+
+  const imageCandidate = hasExplicitImage ? image : (best ? best : (useFallback ? fallback : ''));
+  const imageSrc = imageCandidate ? (process.env.PUBLIC_URL || '') + imageCandidate : '';
 
   return (
     <article className="menu-item-card">
       <div className="menu-card-image" aria-hidden>
         {imageSrc ? (
           <img src={imageSrc} alt={displayTitle} className="menu-card-img" />
-        ) : (
-          <div className="image-surface" />
-        )}
+        ) : null}
 
         {/* badge ใหม่ / แนะนำ */}
         {item && (
