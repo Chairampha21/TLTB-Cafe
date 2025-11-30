@@ -1,5 +1,6 @@
 // src/App.jsx
 import React, { useState } from "react";
+import Swal from 'sweetalert2';
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import MenuPage from "./pages/MenuPage";
@@ -32,6 +33,18 @@ function App() {
     });
     // ensure cart panel opens so user sees the item added
     setCartOpen(true);
+    // show a small toast confirming the item was added
+    if (typeof Swal === 'function') {
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        title: `เพิ่ม ${variant.name} ลงตะกร้า`,
+        showConfirmButton: false,
+        timer: 1200,
+        timerProgressBar: true,
+      });
+    }
   };
 
   const incrementItem = (id) => {
@@ -51,6 +64,17 @@ function App() {
 
   const [cartOpen, setCartOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
+
+  const confirmOrder = () => {
+    if (cart.length === 0) return;
+    Swal.fire({
+      title: 'สั่งซื้อสำเร็จ',
+      text: 'คำสั่งซื้อของคุณได้รับการยืนยันแล้ว ขอบคุณที่สั่งซื้อกับเรา',
+      icon: 'success',
+      confirmButtonText: 'ตกลง',
+    });
+    // NOTE: keep cart state as-is (frontend-only confirmation)
+  };
 
   // debug helper removed (not used)
 
@@ -77,6 +101,7 @@ function App() {
           onIncrement={incrementItem}
           onDecrement={decrementItem}
           onRemove={removeItem}
+          onConfirmOrder={confirmOrder}
         />
       )}
       <AuthModal isOpen={authOpen} onClose={() => setAuthOpen(false)} />

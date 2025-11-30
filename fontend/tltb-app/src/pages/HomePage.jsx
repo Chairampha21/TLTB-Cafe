@@ -62,9 +62,13 @@ function HomePage({ onAddToCart, onOpenAuth }) {
               </div>
 
               <div className="menu-grid">
-                {newest.map((item) => (
-                  <BookCard key={item.id} item={item} onAction={() => handleAdd(item)} actionLabel="สั่งเลย" />
-                ))}
+                {newest.map((item) => {
+                  // mark rendered newest items as new so BookCard shows the "ใหม่" badge
+                  const itemWithNew = { ...item, isNew: true };
+                  return (
+                    <BookCard key={item.id} item={itemWithNew} onAction={() => handleAdd(item)} actionLabel="สั่งเลย" />
+                  );
+                })}
               </div>
             </div>
           </section>

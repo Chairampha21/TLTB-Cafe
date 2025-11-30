@@ -1,7 +1,7 @@
 import React from 'react';
 import './CartPanel.css';
 
-function CartPanel({ cart = [], onClose, onIncrement, onDecrement, onRemove }) {
+function CartPanel({ cart = [], onClose, onIncrement, onDecrement, onRemove, onConfirmOrder }) {
   const total = cart.reduce((s, it) => s + (it.price || 0) * (it.qty || 0), 0);
 
   return (
@@ -39,7 +39,11 @@ function CartPanel({ cart = [], onClose, onIncrement, onDecrement, onRemove }) {
       <div className="cart-panel-footer">
         <div className="cart-total">รวมทั้งหมด: <strong>{total} บาท</strong></div>
         <div className="cart-actions">
-          <button className="checkout-btn" disabled={cart.length === 0}>ชำระเงิน</button>
+          <button
+            className="checkout-btn"
+            disabled={cart.length === 0}
+            onClick={() => typeof onConfirmOrder === 'function' && onConfirmOrder()}
+          >ยืนยันการสั่งซื้อ</button>
         </div>
       </div>
     </aside>

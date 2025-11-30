@@ -1,5 +1,19 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 import './AuthModal.css';
+
+// Example accounts — change email/password here if you want different test accounts
+const BUYER_ACCOUNT = {
+  role: 'buyer',
+  email: 'buyer@tltb.cafe',
+  password: 'buyer123',
+};
+
+const ADMIN_ACCOUNT = {
+  role: 'admin',
+  email: 'admin@tltb.cafe',
+  password: 'admin123',
+};
 
 function AuthModal({ isOpen, onClose }) {
   const [tab, setTab] = useState('signup');
@@ -12,11 +26,58 @@ function AuthModal({ isOpen, onClose }) {
     setForm((s) => ({ ...s, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    // no real auth: just simulate
-    alert(`${tab === 'signup' ? 'สมัครสมาชิก' : 'เข้าสู่ระบบ'}: ` + form.email);
+
+    Swal.fire({
+      title: 'สมัครสมาชิกสำเร็จ!',
+      text: 'ลองเข้าสู่ระบบด้วยอีเมลและรหัสผ่านที่คุณตั้งไว้ได้เลย',
+      icon: 'success',
+      confirmButtonText: 'ตกลง',
+    });
+
     onClose();
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const loginEmail = (form.email || '').trim();
+    const loginPassword = form.password || '';
+
+    // check admin
+    if (loginEmail === ADMIN_ACCOUNT.email && loginPassword === ADMIN_ACCOUNT.password) {
+      Swal.fire({
+        title: 'เข้าสู่ระบบสำเร็จ!',
+        text: 'โหมดแอดมิน (Admin)',
+        icon: 'success',
+        confirmButtonText: 'ตกลง',
+      });
+      // TODO: setRole('admin') or persist in app context
+      onClose();
+      return;
+    }
+
+    // check buyer
+    if (loginEmail === BUYER_ACCOUNT.email && loginPassword === BUYER_ACCOUNT.password) {
+      Swal.fire({
+        title: 'เข้าสู่ระบบสำเร็จ!',
+        text: 'โหมดลูกค้า (Buyer)',
+        icon: 'success',
+        confirmButtonText: 'ตกลง',
+      });
+      // TODO: setRole('buyer')
+      onClose();
+      return;
+    }
+
+    // fallback: bad credentials
+    Swal.fire({
+      title: 'เข้าสู่ระบบไม่สำเร็จ',
+      text: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง',
+      icon: 'error',
+      confirmButtonText: 'ลองใหม่',
+    });
   };
 
   return (
@@ -28,7 +89,7 @@ function AuthModal({ isOpen, onClose }) {
           <button className="close" onClick={onClose}>×</button>
         </div>
 
-        <form className="auth-form" onSubmit={handleSubmit}>
+        <form className="auth-form" onSubmit={tab === 'signup' ? handleRegister : handleLogin}>
           {tab === 'signup' && (
             <label>
               ชื่อ
@@ -38,12 +99,26 @@ function AuthModal({ isOpen, onClose }) {
 
           <label>
             อีเมล
-            <input name="email" value={form.email} onChange={handleChange} placeholder="you@example.com" />
+            <input
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="you@example.com"
+              required
+            />
           </label>
 
           <label>
             รหัสผ่าน
-            <input name="password" type="password" value={form.password} onChange={handleChange} placeholder="รหัสผ่าน" />
+            <input
+              name="password"
+              type="password"
+              value={form.password}
+              onChange={handleChange}
+              placeholder="รหัสผ่าน"
+              required
+            />
           </label>
 
           <div className="auth-actions">

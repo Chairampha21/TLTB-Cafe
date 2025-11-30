@@ -1,6 +1,3 @@
-// src/data/menuData.js
-// ข้อมูลเมนูทั้งหมดสำหรับร้าน TLTB Café (เวอร์ชันไม่มี drinkType แล้ว)
-
 export const menuItems = [
   // ======================
   // DRINKS : นม + ชา/โกโก้/โอวัลติน/ไมโล/มอลต์ (subCategory = 'นม')
@@ -14,10 +11,10 @@ export const menuItems = [
     price: 50,
     originalPrice: 0,
     image: "",
-    description: "นมสดเย็น หวานมันกำลังดี ดื่มง่ายระหว่างอ่านหนังสือ",
+    description: "นมสดหอมละมุน ดื่มง่าย",
     isAvailable: true,
     tags: ["นม", "นมสด"],
-    featured: true
+    featured: true,
   },
   {
     id: 1002,
@@ -28,10 +25,10 @@ export const menuItems = [
     price: 50,
     originalPrice: 0,
     image: "",
-    description: "นมชมพูหวานหอม กลิ่นคลาสสิกโรงเรียน",
+    description: "นมชมพูหวานหอม ดื่มเพลิน",
     isAvailable: true,
     tags: ["นม", "นมชมพู"],
-    featured: false
+    featured: false,
   },
   {
     id: 1003,
@@ -42,112 +39,112 @@ export const menuItems = [
     price: 50,
     originalPrice: 0,
     image: "",
-    description: "นมคาราเมล หวานมัน หอมกลิ่นคาราเมล",
+    description: "นมคาราเมลเข้มข้น หอมหวาน",
     isAvailable: true,
     tags: ["นม", "คาราเมล"],
-    featured: false
+    featured: false,
   },
   {
     id: 1004,
     section: "drink",
     subCategory: "นม",
-    name: "นมสตรอว์เบอร์รี่",
+    name: "นมสดสตรอเบอรี่",
     category: "นม",
     price: 50,
     originalPrice: 0,
     image: "",
-    description: "นมสตรอว์เบอร์รี่ สีชมพูละมุน หวานอมเปรี้ยวเล็กน้อย",
+    description: "นมสดผสมสตรอเบอรี่หวานหอม",
     isAvailable: true,
-    tags: ["นม", "สตรอว์เบอร์รี่"],
-    featured: false
+    tags: ["นม", "สตรอเบอรี่"],
+    featured: false,
   },
   {
     id: 1005,
     section: "drink",
-    subCategory: "ชา",
+    subCategory: "นม",
     name: "ชาไทย",
-    category: "ชา / โกโก้ / โอวัลติน / ไมโล / มอลต์",
+    category: "นม",
     price: 50,
     originalPrice: 0,
     image: "",
-    description: "ชาไทยหอม ๆ รสนมเข้มข้น ดื่มแล้วตื่น",
+    description: "ชาไทยหอมเข้ม หวานมันลงตัว",
     isAvailable: true,
-    tags: ["ชาไทย", "ชา"],
-    featured: true
+    tags: ["ชาไทย", "นม"],
+    featured: true,
   },
   {
     id: 1006,
     section: "drink",
-    subCategory: "ชา",
+    subCategory: "นม",
     name: "ชาเขียว",
-    category: "ชา / โกโก้ / โอวัลติน / ไมโล / มอลต์",
+    category: "นม",
     price: 50,
     originalPrice: 0,
     image: "",
-    description: "ชาเขียวรสนม หอมละมุน ดื่มง่าย",
+    description: "ชาเขียวกลิ่นหอมสดชื่น",
     isAvailable: true,
-    tags: ["ชาเขียว", "ชา"],
-    featured: false
+    tags: ["ชาเขียว", "นม"],
+    featured: false,
   },
   {
     id: 1007,
     section: "drink",
-    subCategory: "โกโก้",
+    subCategory: "นม",
     name: "โกโก้",
-    category: "โกโก้",
+    category: "นม",
     price: 50,
     originalPrice: 0,
     image: "",
-    description: "โกโก้เข้มข้น ช่วยปลุกสมองเวลาอ่านหนังสือดึก ๆ",
+    description: "โกโก้เข้มข้นหวานมัน",
     isAvailable: true,
-    tags: ["โกโก้"],
-    featured: true
+    tags: ["โกโก้", "นม"],
+    featured: true,
   },
   {
     id: 1008,
     section: "drink",
-    subCategory: "โอวัลติน",
+    subCategory: "นม",
     name: "โอวัลติน",
-    category: "โอวัลติน",
+    category: "นม",
     price: 50,
     originalPrice: 0,
     image: "",
-    description: "โอวัลตินสุดคลาสสิก หอมมัน",
+    description: "โอวัลตินหวานหอมแบบคุ้นเคย",
     isAvailable: true,
-    tags: ["โอวัลติน"],
-    featured: false
+    tags: ["โอวัลติน", "นม"],
+    featured: false,
   },
   {
     id: 1009,
     section: "drink",
-    subCategory: "ไมโล",
+    subCategory: "นม",
     name: "ไมโล",
-    category: "ไมโล",
+    category: "นม",
     price: 50,
     originalPrice: 0,
     image: "",
-    description: "ไมโลหวานกลมกล่อมสายกีฬา",
+    description: "ไมโลเข้มข้น หวานมันกำลังดี",
     isAvailable: true,
-    tags: ["ไมโล"],
-    featured: false
+    tags: ["ไมโล", "นม"],
+    featured: false,
   },
   {
     id: 1010,
     section: "drink",
-    subCategory: "มอลต์",
+    subCategory: "นม",
     name: "ไวท์มอลต์",
-    category: "มอลต์",
+    category: "นม",
     price: 50,
     originalPrice: 0,
     image: "",
-    description: "ไวท์มอลต์หอม ๆ หวานละมุน",
+    description: "ไวท์มอลต์หวานกลมกล่อม",
     isAvailable: true,
-    tags: ["มอลต์"],
-    featured: false
+    tags: ["ไวท์มอลต์", "นม"],
+    featured: false,
   },
 
   // ======================
-  // DRINKS : กาแฟ
+  // DRINKS : กาแฟ (6 เมนูตาม SQL)
   // ======================
   {
     id: 1101,
@@ -155,30 +152,58 @@ export const menuItems = [
     subCategory: "กาแฟ",
     name: "อเมริกาโน่",
     category: "กาแฟ",
-    price: 69,
+    price: 70,
     originalPrice: 0,
     image: "",
-    description: "อเมริกาโน่สำหรับสายเข้ม ไม่ใส่นม",
+    description: "กาแฟดำเข้มข้นสดชื่น",
     isAvailable: true,
     tags: ["กาแฟดำ", "อเมริกาโน่"],
-    featured: true
+    featured: true,
   },
   {
     id: 1102,
+    section: "drink",
+    subCategory: "กาแฟ",
+    name: "อเมริกาโน่น้ำผึ้งมะนาว",
+    category: "กาแฟ",
+    price: 70,
+    originalPrice: 0,
+    image: "",
+    description: "กาแฟเข้มผสมน้ำผึ้งมะนาวสดชื่น",
+    isAvailable: true,
+    tags: ["กาแฟ", "อเมริกาโน่", "น้ำผึ้งมะนาว"],
+    featured: false,
+  },
+  {
+    id: 1103,
+    section: "drink",
+    subCategory: "กาแฟ",
+    name: "อเมริกาโน่น้ำส้ม",
+    category: "กาแฟ",
+    price: 70,
+    originalPrice: 0,
+    image: "",
+    description: "กาแฟเข้มกับน้ำส้มสด หอมเปรี้ยวหวาน",
+    isAvailable: true,
+    tags: ["กาแฟ", "อเมริกาโน่", "น้ำส้ม"],
+    featured: false,
+  },
+  {
+    id: 1104,
     section: "drink",
     subCategory: "กาแฟ",
     name: "ลาเต้",
     category: "กาแฟ",
     price: 70,
     originalPrice: 0,
-    image: "",
-    description: "ลาเต้รสนมนุ่มละมุน เหมาะสำหรับนั่งทำรายงาน",
+    image: "/images/food-cover/latte.png",
+    description: "ลาเต้หอมมัน นุ่มละมุน",
     isAvailable: true,
     tags: ["กาแฟนม", "ลาเต้"],
-    featured: false
+    featured: false,
   },
   {
-    id: 1103,
+    id: 1105,
     section: "drink",
     subCategory: "กาแฟ",
     name: "คาปูชิโน่",
@@ -186,27 +211,13 @@ export const menuItems = [
     price: 70,
     originalPrice: 0,
     image: "",
-    description: "คาปูชิโน่ฟองนมหนา ๆ สำหรับสายคาเฟ่",
+    description: "คาปูชิโน่เข้มข้น ฟองนมนุ่ม",
     isAvailable: true,
     tags: ["กาแฟนม", "คาปูชิโน่"],
-    featured: false
+    featured: false,
   },
   {
-    id: 1104,
-    section: "drink",
-    subCategory: "กาแฟ",
-    name: "ลาเต้รสช็อกโกแลต",
-    category: "กาแฟ",
-    price: 75,
-    originalPrice: 0,
-    image: "/images/food-cover/latte.png",
-    description: "ลาเต้ผสมช็อกโกแลต เพิ่มความหวานละมุน",
-    isAvailable: true,
-    tags: ["กาแฟ", "ช็อกโกแลต"],
-    featured: false
-  },
-  {
-    id: 1105,
+    id: 1106,
     section: "drink",
     subCategory: "กาแฟ",
     name: "เอสเพรสโซ",
@@ -214,14 +225,14 @@ export const menuItems = [
     price: 70,
     originalPrice: 0,
     image: "",
-    description: "ช็อตเอสเพรสโซเข้มข้น ปลุกให้ตาสว่างทันที",
+    description: "เอสเพรสโซเข้มข้นสำหรับคอกาแฟ",
     isAvailable: true,
     tags: ["กาแฟดำ", "เอสเพรสโซ"],
-    featured: false
+    featured: false,
   },
 
   // ======================
-  // DRINKS : โซดา
+  // DRINKS : โซดา (6 เมนูตาม SQL)
   // ======================
   {
     id: 1201,
@@ -232,10 +243,10 @@ export const menuItems = [
     price: 50,
     originalPrice: 0,
     image: "",
-    description: "แดงมะนาวโซดา ซ่า ๆ สดชื่น",
+    description: "น้ำแดงมะนาวซ่า สดชื่น",
     isAvailable: true,
     tags: ["โซดา", "แดงมะนาว"],
-    featured: true
+    featured: true,
   },
   {
     id: 1202,
@@ -246,24 +257,24 @@ export const menuItems = [
     price: 50,
     originalPrice: 0,
     image: "",
-    description: "บ๊วยโซดา เปรี้ยวเค็มนิด ๆ ซ่ากำลังดี",
+    description: "บ๊วยโซดาเปรี้ยวเค็มสดชื่น",
     isAvailable: true,
     tags: ["โซดา", "บ๊วย"],
-    featured: false
+    featured: false,
   },
   {
     id: 1203,
     section: "drink",
     subCategory: "โซดา",
-    name: "อัญชันโซดา",
+    name: "อัญชันน้ำผึ้งมะนาว",
     category: "โซดา",
     price: 50,
     originalPrice: 0,
     image: "/images/food-cover/butterfly_pea_honey_lemon.png",
-    description: "อัญชันผสมน้ำผึ้งมะนาว สีสวย ถ่ายรูปสวย",
+    description: "อัญชันผสมน้ำผึ้งมะนาว หอมหวานสดชื่น",
     isAvailable: true,
     tags: ["โซดา", "อัญชัน"],
-    featured: false
+    featured: false,
   },
   {
     id: 1204,
@@ -274,24 +285,38 @@ export const menuItems = [
     price: 50,
     originalPrice: 0,
     image: "",
-    description: "น้ำผึ้งมะนาวโซดา สดชื่น หวานอมเปรี้ยว",
+    description: "หวานอมเปรี้ยว ซ่ากำลังดี",
     isAvailable: true,
     tags: ["โซดา", "น้ำผึ้งมะนาว"],
-    featured: false
+    featured: false,
   },
   {
     id: 1205,
     section: "drink",
     subCategory: "โซดา",
-    name: "น้ำแดงโซดา",
+    name: "น้ำแดงน้ำผึ้งมะนาว",
     category: "โซดา",
     price: 50,
     originalPrice: 0,
     image: "/images/food-cover/red_lime_soda.png",
-    description: "น้ำแดงผสมน้ำผึ้งมะนาว เพิ่มความหวานสดชื่น",
+    description: "น้ำแดงผสมมะนาวหวานสดชื่น",
     isAvailable: true,
     tags: ["โซดา", "น้ำแดง"],
-    featured: false
+    featured: false,
+  },
+  {
+    id: 1206,
+    section: "drink",
+    subCategory: "โซดา",
+    name: "อิตาเลี่ยนโซดา",
+    category: "โซดา",
+    price: 50,
+    originalPrice: 0,
+    image: "",
+    description: "อิตาเลียนโซดาสีสด ดื่มง่าย",
+    isAvailable: true,
+    tags: ["โซดา", "อิตาเลียนโซดา"],
+    featured: false,
   },
 
   // ======================
@@ -306,10 +331,10 @@ export const menuItems = [
     price: 70,
     originalPrice: 0,
     image: "",
-    description: "มัทฉะลาเต้ ครีมมี่ หอมชาเขียว",
+    description: "มัทฉะเข้มผสมนมหอมมัน",
     isAvailable: true,
     tags: ["มัทฉะ"],
-    featured: false
+    featured: false,
   },
   {
     id: 1302,
@@ -320,24 +345,24 @@ export const menuItems = [
     price: 70,
     originalPrice: 0,
     image: "",
-    description: "มัทฉะท็อปโฟมมะพร้าว หอมมัน",
+    description: "มัทฉะเข้มตัดด้วยโฟมมะพร้าวหวานหอม",
     isAvailable: true,
     tags: ["มัทฉะ", "มะพร้าว"],
-    featured: false
+    featured: false,
   },
   {
     id: 1303,
     section: "drink",
     subCategory: "มัทฉะ",
-    name: "มัทฉะสตรอว์เบอร์รี่",
+    name: "มัทฉะสตอเบอรี่",
     category: "มัทฉะ",
     price: 70,
     originalPrice: 0,
     image: "/images/food-cover/matcha_strawberry.png",
-    description: "มัทฉะผสมสตรอว์เบอร์รี่ หวานอมเปรี้ยว",
+    description: "มัทฉะเข้มผสมสตรอเบอรี่สด",
     isAvailable: true,
-    tags: ["มัทฉะ", "สตรอว์เบอร์รี่"],
-    featured: false
+    tags: ["มัทฉะ", "สตรอเบอรี่"],
+    featured: false,
   },
   {
     id: 1304,
@@ -348,10 +373,10 @@ export const menuItems = [
     price: 70,
     originalPrice: 0,
     image: "",
-    description: "เพียวมัทฉะ เข้ม ๆ สำหรับสายชาเขียวแท้",
+    description: "มัทฉะแท้เข้มข้นสำหรับสายชาเขียว",
     isAvailable: true,
     tags: ["มัทฉะ"],
-    featured: false
+    featured: false,
   },
 
   // ======================
@@ -366,10 +391,10 @@ export const menuItems = [
     price: 65,
     originalPrice: 0,
     image: "",
-    description: "สมูทตี้สตรอว์เบอร์รี่ เปรี้ยวหวานเย็นชื่นใจ",
+    description: "สมูทตี้สตรอว์เบอร์รี่หวานสดชื่น",
     isAvailable: true,
     tags: ["สมูทตี้", "สตรอว์เบอร์รี่"],
-    featured: true
+    featured: true,
   },
   {
     id: 1402,
@@ -380,10 +405,10 @@ export const menuItems = [
     price: 65,
     originalPrice: 0,
     image: "",
-    description: "สมูทตี้บลูเบอร์รี่ หอมผลไม้ตระกูลเบอร์รี่",
+    description: "บลูเบอร์รี่เปรี้ยวหวานลงตัว",
     isAvailable: true,
     tags: ["สมูทตี้", "บลูเบอร์รี่"],
-    featured: false
+    featured: false,
   },
   {
     id: 1403,
@@ -394,10 +419,10 @@ export const menuItems = [
     price: 65,
     originalPrice: 0,
     image: "",
-    description: "สมูทตี้ส้มโยเกิร์ต เปรี้ยวหวานสดชื่น",
+    description: "ส้มสดผสมโยเกิร์ตสดชื่น",
     isAvailable: true,
     tags: ["สมูทตี้", "โยเกิร์ต"],
-    featured: false
+    featured: false,
   },
   {
     id: 1404,
@@ -408,10 +433,10 @@ export const menuItems = [
     price: 65,
     originalPrice: 0,
     image: "",
-    description: "สมูทตี้รวมเบอร์รี่ หลากรสในแก้วเดียว",
+    description: "รวมเบอร์รี่เปรี้ยวหวานสดชื่น",
     isAvailable: true,
     tags: ["สมูทตี้", "เบอร์รี่"],
-    featured: false
+    featured: false,
   },
   {
     id: 1405,
@@ -422,10 +447,10 @@ export const menuItems = [
     price: 65,
     originalPrice: 0,
     image: "",
-    description: "โอริโอ้ปั่น หวานครีมมี่ ขวัญใจสายขนม",
+    description: "โอริโอ้ปั่นกรุบกรอบ",
     isAvailable: true,
     tags: ["สมูทตี้", "โอริโอ้"],
-    featured: false
+    featured: false,
   },
   {
     id: 1406,
@@ -436,14 +461,14 @@ export const menuItems = [
     price: 65,
     originalPrice: 0,
     image: "",
-    description: "เนสวีต้าปั่น หอมธัญพืชละมุน ๆ",
+    description: "เนสวีต้าปั่นหอมมอลต์",
     isAvailable: true,
     tags: ["สมูทตี้", "เนสวีต้า"],
-    featured: false
+    featured: false,
   },
 
   // ======================
-  // DRINKS : น้ำเปล่า / น้ำอัดลม / เบียร์ / น้ำแข็ง (subCategory = null)
+  // DRINKS : น้ำเปล่า / น้ำอัดลม / เบียร์ / น้ำแข็ง
   // ======================
   {
     id: 1501,
@@ -454,10 +479,10 @@ export const menuItems = [
     price: 15,
     originalPrice: 0,
     image: "",
-    description: "น้ำเปล่าบรรจุขวด",
+    description: "น้ำเปล่าเย็นสดชื่น",
     isAvailable: true,
     tags: ["น้ำเปล่า"],
-    featured: false
+    featured: false,
   },
   {
     id: 1502,
@@ -468,10 +493,10 @@ export const menuItems = [
     price: 20,
     originalPrice: 0,
     image: "",
-    description: "น้ำอัดลมโค้กซ่า ๆ",
+    description: "โค้กหวานซ่าดื่มง่าย",
     isAvailable: true,
     tags: ["น้ำอัดลม", "โค้ก"],
-    featured: false
+    featured: false,
   },
   {
     id: 1503,
@@ -482,10 +507,10 @@ export const menuItems = [
     price: 90,
     originalPrice: 0,
     image: "",
-    description: "เบียร์สิงห์เย็น ๆ (จำหน่ายเฉพาะลูกค้าที่บรรลุนิติภาวะแล้ว)",
+    description: "เบียร์สิงห์รสละมุน",
     isAvailable: true,
     tags: ["เบียร์"],
-    featured: false
+    featured: false,
   },
   {
     id: 1504,
@@ -496,10 +521,10 @@ export const menuItems = [
     price: 80,
     originalPrice: 0,
     image: "",
-    description: "เบียร์ลีโอ (จำหน่ายเฉพาะลูกค้าที่บรรลุนิติภาวะแล้ว)",
+    description: "ลีโอรสนุ่มดื่มเพลิน",
     isAvailable: true,
     tags: ["เบียร์"],
-    featured: false
+    featured: false,
   },
   {
     id: 1505,
@@ -510,10 +535,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "เบียร์สไตล์ไวเซ่น (จำหน่ายเฉพาะลูกค้าที่บรรลุนิติภาวะแล้ว)",
+    description: "เบียร์ไวเซ่นหอมข้าวสาลี",
     isAvailable: true,
     tags: ["เบียร์"],
-    featured: false
+    featured: false,
   },
   {
     id: 1506,
@@ -524,10 +549,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "เบียร์รสผลไม้ (จำหน่ายเฉพาะลูกค้าที่บรรลุนิติภาวะแล้ว)",
+    description: "โรเซ่เบียร์หอมผลไม้",
     isAvailable: true,
     tags: ["เบียร์"],
-    featured: false
+    featured: false,
   },
   {
     id: 1507,
@@ -538,10 +563,10 @@ export const menuItems = [
     price: 5,
     originalPrice: 0,
     image: "",
-    description: "น้ำแข็งใส่แก้ว",
+    description: "น้ำแข็งหนึ่งแก้ว",
     isAvailable: true,
     tags: ["น้ำแข็ง"],
-    featured: false
+    featured: false,
   },
   {
     id: 1508,
@@ -552,234 +577,30 @@ export const menuItems = [
     price: 20,
     originalPrice: 0,
     image: "",
-    description: "น้ำแข็งแบบถัง สำหรับหลายคน",
+    description: "น้ำแข็งหนึ่งถัง",
     isAvailable: true,
     tags: ["น้ำแข็ง"],
-    featured: false
-  },
-
-  // ======================
-  // DRINKS : สมูทตี้
-  // ======================
-  {
-    id: 1401,
-    section: "drink",
-    subCategory: "สมูทตี้",
-    name: "สมูทตี้สตรอว์เบอร์รี่",
-    category: "สมูทตี้",
-    price: 65,
-    originalPrice: 0,
-    image: "",
-    description: "สมูทตี้สตรอว์เบอร์รี่ เปรี้ยวหวานเย็นชื่นใจ",
-    isAvailable: true,
-    tags: ["สมูทตี้", "สตรอว์เบอร์รี่"],
-    featured: true
-  },
-  {
-    id: 1402,
-    section: "drink",
-    subCategory: "สมูทตี้",
-    name: "สมูทตี้บลูเบอร์รี่",
-    category: "สมูทตี้",
-    price: 65,
-    originalPrice: 0,
-    image: "",
-    description: "สมูทตี้บลูเบอร์รี่ หอมผลไม้ตระกูลเบอร์รี่",
-    isAvailable: true,
-    tags: ["สมูทตี้", "บลูเบอร์รี่"],
-    featured: false
-  },
-  {
-    id: 1403,
-    section: "drink",
-    subCategory: "สมูทตี้",
-    name: "ส้มโยเกิร์ตสมูทตี้",
-    category: "สมูทตี้",
-    price: 65,
-    originalPrice: 0,
-    image: "",
-    description: "สมูทตี้ส้มโยเกิร์ต เปรี้ยวหวานสดชื่น",
-    isAvailable: true,
-    tags: ["สมูทตี้", "โยเกิร์ต"],
-    featured: false
-  },
-  {
-    id: 1404,
-    section: "drink",
-    subCategory: "สมูทตี้",
-    name: "สมูทตี้รวมเบอร์รี่",
-    category: "สมูทตี้",
-    price: 65,
-    originalPrice: 0,
-    image: "",
-    description: "สมูทตี้รวมเบอร์รี่ หลากรสในแก้วเดียว",
-    isAvailable: true,
-    tags: ["สมูทตี้", "เบอร์รี่"],
-    featured: false
-  },
-  {
-    id: 1405,
-    section: "drink",
-    subCategory: "สมูทตี้",
-    name: "โอริโอ้ปั่น",
-    category: "สมูทตี้",
-    price: 65,
-    originalPrice: 0,
-    image: "",
-    description: "โอริโอ้ปั่น หวานครีมมี่ ขวัญใจสายขนม",
-    isAvailable: true,
-    tags: ["สมูทตี้", "โอริโอ้"],
-    featured: false
-  },
-  {
-    id: 1406,
-    section: "drink",
-    subCategory: "สมูทตี้",
-    name: "เนสวีต้าปั่น",
-    category: "สมูทตี้",
-    price: 65,
-    originalPrice: 0,
-    image: "",
-    description: "เนสวีต้าปั่น หอมธัญพืชละมุน ๆ",
-    isAvailable: true,
-    tags: ["สมูทตี้", "เนสวีต้า"],
-    featured: false
-  },
-
-  // ======================
-  // DRINKS : น้ำเปล่า / น้ำอัดลม / เบียร์ / น้ำแข็ง (sub_category = NULL)
-  // ======================
-  {
-    id: 1501,
-    section: "drink",
-    subCategory: null,
-    name: "น้ำเปล่า",
-    category: "น้ำเปล่า / น้ำอัดลม / เบียร์",
-    price: 15,
-    originalPrice: 0,
-    image: "",
-    description: "น้ำเปล่าบรรจุขวด",
-    isAvailable: true,
-    tags: ["น้ำเปล่า"],
-    featured: false
-  },
-  {
-    id: 1502,
-    section: "drink",
-    subCategory: null,
-    name: "โค้ก",
-    category: "น้ำเปล่า / น้ำอัดลม / เบียร์",
-    price: 20,
-    originalPrice: 0,
-    image: "",
-    description: "น้ำอัดลมโค้กซ่า ๆ",
-    isAvailable: true,
-    tags: ["น้ำอัดลม", "โค้ก"],
-    featured: false
-  },
-  {
-    id: 1503,
-    section: "drink",
-    subCategory: null,
-    name: "เบียร์สิงห์",
-    category: "น้ำเปล่า / น้ำอัดลม / เบียร์",
-    price: 90,
-    originalPrice: 0,
-    image: "",
-    description: "เบียร์สิงห์เย็น ๆ (จำหน่ายเฉพาะลูกค้าที่บรรลุนิติภาวะแล้ว)",
-    isAvailable: true,
-    tags: ["เบียร์"],
-    featured: false
-  },
-  {
-    id: 1504,
-    section: "drink",
-    subCategory: null,
-    name: "เบียร์ลีโอ",
-    category: "น้ำเปล่า / น้ำอัดลม / เบียร์",
-    price: 80,
-    originalPrice: 0,
-    image: "",
-    description: "เบียร์ลีโอ (จำหน่ายเฉพาะลูกค้าที่บรรลุนิติภาวะแล้ว)",
-    isAvailable: true,
-    tags: ["เบียร์"],
-    featured: false
-  },
-  {
-    id: 1505,
-    section: "drink",
-    subCategory: null,
-    name: "สโนวี่ ไวเซ่น",
-    category: "น้ำเปล่า / น้ำอัดลม / เบียร์",
-    price: 89,
-    originalPrice: 0,
-    image: "",
-    description: "เบียร์สไตล์ไวเซ่น (จำหน่ายเฉพาะลูกค้าที่บรรลุนิติภาวะแล้ว)",
-    isAvailable: true,
-    tags: ["เบียร์"],
-    featured: false
-  },
-  {
-    id: 1506,
-    section: "drink",
-    subCategory: null,
-    name: "สโนวี่ โรเซ่",
-    category: "น้ำเปล่า / น้ำอัดลม / เบียร์",
-    price: 89,
-    originalPrice: 0,
-    image: "",
-    description: "เบียร์รสผลไม้ (จำหน่ายเฉพาะลูกค้าที่บรรลุนิติภาวะแล้ว)",
-    isAvailable: true,
-    tags: ["เบียร์"],
-    featured: false
-  },
-  {
-    id: 1507,
-    section: "drink",
-    subCategory: null,
-    name: "น้ำแข็งเปล่า(แก้ว)",
-    category: "น้ำเปล่า / น้ำอัดลม / เบียร์",
-    price: 5,
-    originalPrice: 0,
-    image: "",
-    description: "น้ำแข็งใส่แก้ว",
-    isAvailable: true,
-    tags: ["น้ำแข็ง"],
-    featured: false
-  },
-  {
-    id: 1508,
-    section: "drink",
-    subCategory: null,
-    name: "น้ำแข็งเปล่า(ถัง)",
-    category: "น้ำเปล่า / น้ำอัดลม / เบียร์",
-    price: 20,
-    originalPrice: 0,
-    image: "",
-    description: "น้ำแข็งแบบถัง สำหรับหลายคน",
-    isAvailable: true,
-    tags: ["น้ำแข็ง"],
-    featured: false
+    featured: false,
   },
 
   // ======================
   // DESSERTS : โทสต์ / ปังเย็น / ขนมปังปิ้ง
   // ======================
 
-  // โทสต์
+  // โทสต์ (ราคาตาม SQL = 99)
   {
     id: 2001,
     section: "dessert",
     subCategory: "โทสต์",
     name: "โทสต์สตรอว์เบอร์รี่",
     category: "โทสต์",
-    price: null,
+    price: 99,
     originalPrice: 0,
     image: "",
-    description: "โทสต์เนื้อนุ่ม เสิร์ฟกับซอสสตรอว์เบอร์รี่และครีม",
+    description: "โทสต์ราดสตรอว์เบอร์รี่หวานหอม",
     isAvailable: true,
     tags: ["โทสต์", "สตรอว์เบอร์รี่"],
-    featured: true
+    featured: true,
   },
   {
     id: 2002,
@@ -787,13 +608,13 @@ export const menuItems = [
     subCategory: "โทสต์",
     name: "โทสต์ช็อกโกแลต",
     category: "โทสต์",
-    price: null,
+    price: 99,
     originalPrice: 0,
     image: "",
-    description: "โทสต์ช็อกโกแลต ราดซอสช็อกโกแลตเข้มข้น",
+    description: "โทสต์ราดช็อกโกแลตเข้มข้น",
     isAvailable: true,
     tags: ["โทสต์", "ช็อกโกแลต"],
-    featured: false
+    featured: false,
   },
   {
     id: 2003,
@@ -801,13 +622,13 @@ export const menuItems = [
     subCategory: "โทสต์",
     name: "โทสต์โอรีโอ้",
     category: "โทสต์",
-    price: null,
+    price: 99,
     originalPrice: 0,
     image: "",
-    description: "โทสต์โอรีโอ้ ท็อปด้วยคุกกี้โอรีโอ้กรุบ",
+    description: "โทสต์ราดโอรีโอ้กรุบกรอบ",
     isAvailable: true,
     tags: ["โทสต์", "โอรีโอ้"],
-    featured: false
+    featured: false,
   },
   {
     id: 2004,
@@ -815,13 +636,13 @@ export const menuItems = [
     subCategory: "โทสต์",
     name: "โทสต์คาราเมล",
     category: "โทสต์",
-    price: null,
+    price: 99,
     originalPrice: 0,
     image: "",
-    description: "โทสต์คาราเมล ราดซอสคาราเมลหอมหวาน",
+    description: "โทสต์ราดคาราเมลหวานมัน",
     isAvailable: true,
     tags: ["โทสต์", "คาราเมล"],
-    featured: false
+    featured: false,
   },
   {
     id: 2005,
@@ -829,29 +650,29 @@ export const menuItems = [
     subCategory: "โทสต์",
     name: "โทสต์ฮันนี่",
     category: "โทสต์",
-    price: null,
+    price: 99,
     originalPrice: 0,
     image: "",
-    description: "โทสต์ฮันนี่ ราดน้ำผึ้งและเนยสด",
+    description: "โทสต์ราดน้ำผึ้งหอมหวาน",
     isAvailable: true,
     tags: ["โทสต์", "ฮันนี่"],
-    featured: false
+    featured: false,
   },
 
-  // ปังเย็น
+  // ปังเย็น (ราคาตาม SQL = 69)
   {
     id: 2101,
     section: "dessert",
     subCategory: "ปังเย็น",
     name: "ปังเย็นช็อกโกแลต",
     category: "ปังเย็น",
-    price: null,
+    price: 69,
     originalPrice: 0,
     image: "",
-    description: "ปังเย็นช็อกโกแลต ราดช็อกโกแลตและท็อปครีม",
+    description: "ปังเย็นราดช็อกโกแลตหวานเย็น",
     isAvailable: true,
     tags: ["ปังเย็น", "ช็อกโกแลต"],
-    featured: false
+    featured: false,
   },
   {
     id: 2102,
@@ -859,13 +680,13 @@ export const menuItems = [
     subCategory: "ปังเย็น",
     name: "ปังเย็นโอรีโอ้",
     category: "ปังเย็น",
-    price: null,
+    price: 69,
     originalPrice: 0,
     image: "",
-    description: "ปังเย็นโอรีโอ้ สไตล์หวานกรุบกับโอรีโอ้",
+    description: "ปังเย็นโอรีโอ้กรอบหวาน",
     isAvailable: true,
     tags: ["ปังเย็น", "โอรีโอ้"],
-    featured: false
+    featured: false,
   },
   {
     id: 2103,
@@ -873,13 +694,13 @@ export const menuItems = [
     subCategory: "ปังเย็น",
     name: "ปังเย็นสตรอว์เบอร์รี่",
     category: "ปังเย็น",
-    price: null,
+    price: 69,
     originalPrice: 0,
     image: "",
-    description: "ปังเย็นสตรอว์เบอร์รี่ ราดซอสสตรอว์เบอร์รี่สด",
+    description: "ปังเย็นราดสตรอว์เบอร์รี่สด",
     isAvailable: true,
     tags: ["ปังเย็น", "สตรอว์เบอร์รี่"],
-    featured: false
+    featured: false,
   },
   {
     id: 2104,
@@ -887,13 +708,13 @@ export const menuItems = [
     subCategory: "ปังเย็น",
     name: "ปังเย็นคาราเมล",
     category: "ปังเย็น",
-    price: null,
+    price: 69,
     originalPrice: 0,
     image: "",
-    description: "ปังเย็นคาราเมล ราดซอสคาราเมลและเกล็ดน้ำตาล",
+    description: "ปังเย็นราดคาราเมลหวานหอม",
     isAvailable: true,
     tags: ["ปังเย็น", "คาราเมล"],
-    featured: false
+    featured: false,
   },
   {
     id: 2105,
@@ -901,16 +722,16 @@ export const menuItems = [
     subCategory: "ปังเย็น",
     name: "ปังเย็นนมฮันนี่",
     category: "ปังเย็น",
-    price: null,
+    price: 69,
     originalPrice: 0,
     image: "",
-    description: "ปังเย็นนมฮันนี่ ราดนมและน้ำผึ้งหอมหวาน",
+    description: "ปังเย็นราดนมและน้ำผึ้ง",
     isAvailable: true,
     tags: ["ปังเย็น", "นมฮันนี่"],
-    featured: false
+    featured: false,
   },
 
-  // ขนมปังปิ้ง
+  // ขนมปังปิ้ง (ตาม SQL = 25 บาท)
   {
     id: 2201,
     section: "dessert",
@@ -920,10 +741,10 @@ export const menuItems = [
     price: 25,
     originalPrice: 0,
     image: "",
-    description: "ขนมปังปิ้งชาไทย ทาด้วยครีมชาไทยหอมหวาน",
+    description: "ขนมปังชุบชาไทยหอมหวาน",
     isAvailable: true,
     tags: ["ขนมปังปิ้ง", "ชาไทย"],
-    featured: false
+    featured: false,
   },
   {
     id: 2202,
@@ -934,10 +755,10 @@ export const menuItems = [
     price: 25,
     originalPrice: 0,
     image: "",
-    description: "ขนมปังปิ้งช็อกโกแลต ทาเนยและช็อกโกแลตละลาย",
+    description: "ขนมปังราดช็อกโกแลตเข้ม",
     isAvailable: true,
     tags: ["ขนมปังปิ้ง", "ช็อกโกแลต"],
-    featured: false
+    featured: false,
   },
   {
     id: 2203,
@@ -948,10 +769,10 @@ export const menuItems = [
     price: 25,
     originalPrice: 0,
     image: "",
-    description: "ขนมปังปิ้งช็อกโกแลตกล้วย พร้อมกล้วยหอมสด",
+    description: "ช็อกโกแลตคู่กล้วยหอมลงตัว",
     isAvailable: true,
     tags: ["ขนมปังปิ้ง", "ช็อกโกแลต", "กล้วย"],
-    featured: false
+    featured: false,
   },
   {
     id: 2204,
@@ -962,10 +783,10 @@ export const menuItems = [
     price: 25,
     originalPrice: 0,
     image: "",
-    description: "ขนมปังปิ้งนมสด ทาเนยนมหวานละมุน",
+    description: "ขนมปังราดนมสดหวานหอม",
     isAvailable: true,
     tags: ["ขนมปังปิ้ง", "นม"],
-    featured: false
+    featured: false,
   },
   {
     id: 2205,
@@ -976,10 +797,10 @@ export const menuItems = [
     price: 25,
     originalPrice: 0,
     image: "",
-    description: "ขนมปังปิ้งสตรอเบอร์รี่ โรยซอสสตรอว์เบอร์รี่",
+    description: "ราดสตรอว์เบอร์รี่หวานเปรี้ยว",
     isAvailable: true,
     tags: ["ขนมปังปิ้ง", "สตรอว์เบอร์รี่"],
-    featured: false
+    featured: false,
   },
   {
     id: 2206,
@@ -990,10 +811,10 @@ export const menuItems = [
     price: 25,
     originalPrice: 0,
     image: "",
-    description: "ขนมปังปิ้งเนยนม เนยสดและนมข้นหวาน",
+    description: "เนยนมหอมมัน",
     isAvailable: true,
     tags: ["ขนมปังปิ้ง", "เนยนม"],
-    featured: false
+    featured: false,
   },
   {
     id: 2207,
@@ -1004,10 +825,10 @@ export const menuItems = [
     price: 25,
     originalPrice: 0,
     image: "",
-    description: "ขนมปังปิ้งเนยน้ำตาล โรยน้ำตาลกรอบหอมมัน",
+    description: "เนยน้ำตาลกรอบหวาน",
     isAvailable: true,
     tags: ["ขนมปังปิ้ง", "น้ำตาล"],
-    featured: false
+    featured: false,
   },
 
   // ======================
@@ -1022,10 +843,10 @@ export const menuItems = [
     price: 69,
     originalPrice: 0,
     image: "",
-    description: "กะเพราหมูรสจัดจ้าน เสิร์ฟพร้อมข้าวสวยร้อน ๆ",
+    description: "ผัดกะเพราหมูเผ็ดหอมแบบต้นตำรับ",
     isAvailable: true,
     tags: ["ข้าว", "กะเพรา"],
-    featured: true
+    featured: true,
   },
   {
     id: 3002,
@@ -1036,10 +857,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "กะเพราทะเล ใส่กุ้งและปลาหมึก ผัดรสจัด เสิร์ฟกับข้าวสวยร้อน ๆ",
+    description: "ผัดกะเพราทะเลจัดจ้าน",
     isAvailable: true,
     tags: ["ข้าว", "กะเพรา", "ทะเล"],
-    featured: false
+    featured: false,
   },
   {
     id: 3003,
@@ -1050,10 +871,10 @@ export const menuItems = [
     price: 69,
     originalPrice: 0,
     image: "",
-    description: "หมูกระเทียมเจียวหอม ทานง่าย กับข้าวสวยร้อน ๆ",
+    description: "หมูกระเทียมหอมมัน",
     isAvailable: true,
     tags: ["ข้าว", "หมูกระเทียม"],
-    featured: false
+    featured: false,
   },
   {
     id: 3004,
@@ -1064,10 +885,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "ทะเลผัดกระเทียมหอม ๆ พร้อมข้าวสวยร้อน ๆ",
+    description: "ทะเลกระเทียมผัดเข้มข้น",
     isAvailable: true,
     tags: ["ข้าว", "ทะเล"],
-    featured: false
+    featured: false,
   },
   {
     id: 3005,
@@ -1078,10 +899,10 @@ export const menuItems = [
     price: 79,
     originalPrice: 0,
     image: "",
-    description: "คะน้าผัดหมูกรอบ รสเค็มหวาน ท็อปด้วยหมูกรอบกรุบ",
+    description: "คะน้าหมูกรอบไฟแรง",
     isAvailable: true,
     tags: ["ข้าว", "หมูกรอบ"],
-    featured: false
+    featured: false,
   },
   {
     id: 3006,
@@ -1092,10 +913,10 @@ export const menuItems = [
     price: 79,
     originalPrice: 0,
     image: "",
-    description: "ยำไก่รสแซ่บจัดจ้าน เสิร์ฟพร้อมข้าวสวย",
+    description: "ไก่ทอดคลุกซอสสุดจัดจ้าน",
     isAvailable: true,
-    tags: ["ข้าว", "ยำ"],
-    featured: false
+    tags: ["ข้าว", "ยำ", "ไก่ทอด"],
+    featured: false,
   },
   {
     id: 3007,
@@ -1106,10 +927,10 @@ export const menuItems = [
     price: 79,
     originalPrice: 0,
     image: "",
-    description: "ไก่กรอบคลุกซอสพะแนง หอมเครื่องแกง เสิร์ฟพร้อมข้าว",
+    description: "ไก่กรอบราดซอสพะแนงเข้มข้น",
     isAvailable: true,
     tags: ["ข้าว", "ไก่กรอบ"],
-    featured: false
+    featured: false,
   },
   {
     id: 3008,
@@ -1120,10 +941,10 @@ export const menuItems = [
     price: 99,
     originalPrice: 0,
     image: "",
-    description: "ห่อหมกทะเลรสเข้ม เสิร์ฟพร้อมไข่ข้นเนียน ๆ",
+    description: "ห่อหมกทะเลคู่ไข่ข้นละมุน",
     isAvailable: true,
     tags: ["ข้าว", "ทะเล"],
-    featured: false
+    featured: false,
   },
   {
     id: 3009,
@@ -1134,10 +955,10 @@ export const menuItems = [
     price: 69,
     originalPrice: 0,
     image: "",
-    description: "ข้าวผัดพริกแกงหมู หอมเครื่องแกง รสจัดจ้าน",
+    description: "พริกแกงเผ็ดหอมรสจัด",
     isAvailable: true,
     tags: ["ข้าว", "ผัดพริกแกง"],
-    featured: false
+    featured: false,
   },
   {
     id: 3010,
@@ -1148,10 +969,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "ข้าวผัดพริกแกงทะเล ใส่กุ้งและปลาหมึก รสจัด เสิร์ฟร้อน",
+    description: "พริกแกงทะเลรสจัดจ้าน",
     isAvailable: true,
     tags: ["ข้าว", "ผัดพริกแกง", "ทะเล"],
-    featured: false
+    featured: false,
   },
   {
     id: 3011,
@@ -1162,10 +983,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "หมูกรอบผัดพริกเกลือ หอมกระทะและพริกไทย เสิร์ฟพร้อมข้าว",
+    description: "หมูกรอบพริกเกลือหอมเผ็ด",
     isAvailable: true,
     tags: ["ข้าว", "หมูกรอบ"],
-    featured: false
+    featured: false,
   },
   {
     id: 3012,
@@ -1176,10 +997,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "กุ้งผัดพริกเกลือ รสเข้ม เสิร์ฟร้อนพร้อมข้าวสวย",
+    description: "กุ้งสดผัดพริกเกลือเข้มข้น",
     isAvailable: true,
     tags: ["ข้าว", "กุ้ง"],
-    featured: false
+    featured: false,
   },
   {
     id: 3013,
@@ -1190,10 +1011,10 @@ export const menuItems = [
     price: 99,
     originalPrice: 0,
     image: "",
-    description: "กุ้งผัดพริกขี้หนูเพิ่มไข่ข้น หอม เผ็ด เลืองลิ้น",
+    description: "กุ้งผัดขี้หนูเผ็ดจัดคู่ไข่ข้น",
     isAvailable: true,
     tags: ["ข้าว", "กุ้ง"],
-    featured: false
+    featured: false,
   },
   {
     id: 3014,
@@ -1204,10 +1025,10 @@ export const menuItems = [
     price: 69,
     originalPrice: 0,
     image: "",
-    description: "ข้าวผัดเครื่องแกงเขียวหวาน หวานเค็มกลมกล่อม",
+    description: "เขียวหวานหอมมัน",
     isAvailable: true,
     tags: ["ข้าว", "เขียวหวาน"],
-    featured: false
+    featured: false,
   },
   {
     id: 3015,
@@ -1218,10 +1039,10 @@ export const menuItems = [
     price: 69,
     originalPrice: 0,
     image: "",
-    description: "ข้าวผัดแบบคลาสสิก ใส่ไข่และผัก หอมกระทะ",
+    description: "ข้าวผัดบ้านๆ หอมกระทะ",
     isAvailable: true,
     tags: ["ข้าว", "ข้าวผัด"],
-    featured: false
+    featured: false,
   },
   {
     id: 3016,
@@ -1232,10 +1053,10 @@ export const menuItems = [
     price: 69,
     originalPrice: 0,
     image: "",
-    description: "ข้าวผัดต้มยำ รสเปรี้ยวเผ็ด หอมสมุนไพรต้มยำ",
+    description: "ต้มยำเปรี้ยวเผ็ดหอมสมุนไพร",
     isAvailable: true,
     tags: ["ข้าว", "ต้มยำ"],
-    featured: false
+    featured: false,
   },
   {
     id: 3017,
@@ -1246,10 +1067,10 @@ export const menuItems = [
     price: 189,
     originalPrice: 0,
     image: "",
-    description: "ข้าวผัดมันเนื้อ เนื้อนุ่ม ผัดกับมันเนื้อหอม ๆ",
+    description: "เนื้อผัดมันเข้มข้น",
     isAvailable: true,
     tags: ["ข้าว", "เนื้อ"],
-    featured: false
+    featured: false,
   },
   {
     id: 3018,
@@ -1260,10 +1081,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "หมูทอดกรอบ ราดซอสรสเด็ด เสิร์ฟพร้อมข้าวสวย",
+    description: "หมูทอดกรอบนุ่ม",
     isAvailable: true,
     tags: ["ข้าว", "หมูทอด"],
-    featured: false
+    featured: false,
   },
   {
     id: 3019,
@@ -1274,10 +1095,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "ไก่ทอดกรอบ เสิร์ฟพร้อมซอสหวานเค็มและข้าวร้อน ๆ",
+    description: "ไก่ทอดชิ้นใหญ่เคลือบซอส",
     isAvailable: true,
     tags: ["ข้าว", "ไก่ทอด"],
-    featured: false
+    featured: false,
   },
   {
     id: 3020,
@@ -1288,10 +1109,10 @@ export const menuItems = [
     price: 99,
     originalPrice: 0,
     image: "",
-    description: "คัตสึด้ง หมูทอดชิ้นหนา ราดซอสหวานเค็ม เสิร์ฟบนข้าว",
+    description: "ทงคัตสึราดไข่สไตล์ญี่ปุ่น",
     isAvailable: true,
     tags: ["คัตสึด้ง"],
-    featured: false
+    featured: false,
   },
   {
     id: 3021,
@@ -1302,10 +1123,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "ไก่ย่างราดซอสเทอริยากิ หวานเค็มกลมกล่อม เสิร์ฟกับข้าว",
+    description: "ไก่ซอสเทอริยากิหวานเค็ม",
     isAvailable: true,
     tags: ["ข้าว", "เทอริยากิ"],
-    featured: false
+    featured: false,
   },
   {
     id: 3022,
@@ -1316,10 +1137,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "หมูสามชั้นสไลด์ ย่างจนหอม เสิร์ฟบนข้าวร้อน ๆ",
+    description: "สามชั้นนุ่มย่างหอม",
     isAvailable: true,
     tags: ["ข้าว", "หมูสามชั้น"],
-    featured: false
+    featured: false,
   },
   {
     id: 3023,
@@ -1330,10 +1151,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "หมูสันนอกสไลด์ เนื้อนุ่ม ราดซอสอร่อย",
+    description: "หมูสันนอกนุ่มราดซอสนัว",
     isAvailable: true,
     tags: ["ข้าว", "หมูสันนอก"],
-    featured: false
+    featured: false,
   },
   {
     id: 3024,
@@ -1344,10 +1165,10 @@ export const menuItems = [
     price: 39,
     originalPrice: 0,
     image: "",
-    description: "เมนูประหยัดสำหรับมื้อดึกของเด็กมหาลัย",
+    description: "ไข่เจียวฟูหอม",
     isAvailable: true,
     tags: ["ข้าว", "ไข่เจียว", "โปรมื้อดึก"],
-    featured: true
+    featured: true,
   },
   {
     id: 3025,
@@ -1358,10 +1179,10 @@ export const menuItems = [
     price: 79,
     originalPrice: 0,
     image: "",
-    description: "ต้มยำน้ำข้น รสจัด หอมกุ้งและสมุนไพร",
+    description: "ต้มยำรสนัวเข้มข้น",
     isAvailable: true,
     tags: ["ต้มยำ"],
-    featured: false
+    featured: false,
   },
   {
     id: 3026,
@@ -1372,10 +1193,10 @@ export const menuItems = [
     price: 79,
     originalPrice: 0,
     image: "",
-    description: "ต้มยำน้ำใส เปรี้ยวเผ็ด สดชื่น เติมเครื่องทะเลตามชอบ",
+    description: "ต้มยำใสเปรี้ยวเผ็ดสดชื่น",
     isAvailable: true,
     tags: ["ต้มยำ"],
-    featured: false
+    featured: false,
   },
   {
     id: 3027,
@@ -1386,10 +1207,10 @@ export const menuItems = [
     price: 99,
     originalPrice: 0,
     image: "",
-    description: "ลาบทอดกรอบ รสแซ่บสไตล์อีสาน กินเล่นหรือเป็นกับข้าวได้",
+    description: "ลาบทอดกรอบจัดจ้าน",
     isAvailable: true,
     tags: ["ลาบ"],
-    featured: false
+    featured: false,
   },
   {
     id: 3028,
@@ -1400,10 +1221,10 @@ export const menuItems = [
     price: 99,
     originalPrice: 0,
     image: "",
-    description: "หมูคลุกฝุ่น ปรุงรสจัด เสิร์ฟพร้อมผักสดและข้าว",
+    description: "หมูทอดคลุกเครื่องลาบ",
     isAvailable: true,
     tags: ["หมู"],
-    featured: false
+    featured: false,
   },
   {
     id: 3029,
@@ -1414,10 +1235,10 @@ export const menuItems = [
     price: 10,
     originalPrice: 0,
     image: "",
-    description: "ข้าวสวยร้อน ๆ เสิร์ฟเป็นเครื่องเคียงสำหรับเมนูต่าง ๆ",
+    description: "ข้าวสวยหอมมะลิ",
     isAvailable: true,
     tags: ["ข้าว"],
-    featured: false
+    featured: false,
   },
 
   // ======================
@@ -1432,10 +1253,10 @@ export const menuItems = [
     price: 99,
     originalPrice: 0,
     image: "",
-    description: "สปาเกตตีไวท์ซอส ครีมมี่ โรยชีส เพิ่มความเข้มข้น",
+    description: "ไวท์ซอสครีมมี่เข้มข้น",
     isAvailable: true,
     tags: ["เส้น", "สปาเกตตี"],
-    featured: false
+    featured: false,
   },
   {
     id: 3102,
@@ -1446,10 +1267,10 @@ export const menuItems = [
     price: 119,
     originalPrice: 0,
     image: "",
-    description: "สปาเกตตีไวท์ซอส โรยไข่กุ้ง เพิ่มรสสัมผัสและความหรูหรา",
+    description: "ไวท์ซอสเข้มข้นเพิ่มไข่กุ้ง",
     isAvailable: true,
     tags: ["เส้น", "สปาเกตตี"],
-    featured: false
+    featured: false,
   },
   {
     id: 3103,
@@ -1460,10 +1281,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "สปาเกตตีผัดกับเบคอนและพริกแห้ง หอมกระเทียม รสจัด",
+    description: "เบคอนผัดพริกแห้งเผ็ดหอม",
     isAvailable: true,
     tags: ["เส้น", "สปาเกตตี"],
-    featured: false
+    featured: false,
   },
   {
     id: 3104,
@@ -1474,10 +1295,10 @@ export const menuItems = [
     price: 99,
     originalPrice: 0,
     image: "",
-    description: "สปาเกตตีขี้เมาทะเลรวม ใส่กุ้ง ปลาหมึก รสจัดจ้าน",
+    description: "ขี้เมาทะเลจัดจ้าน",
     isAvailable: true,
     tags: ["เส้น", "ทะเล"],
-    featured: false
+    featured: false,
   },
   {
     id: 3105,
@@ -1488,10 +1309,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "มาม่าต้มยำใส่หมูกรอบ รสต้มยำจัดจ้าน หอมเครื่องสมุนไพร",
+    description: "มาม่าต้มยำเข้มข้นคู่หมูกรอบ",
     isAvailable: true,
     tags: ["มาม่า", "ต้มยำ"],
-    featured: true
+    featured: true,
   },
   {
     id: 3106,
@@ -1502,10 +1323,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "มาม่าต้มยำทะเล ใส่กุ้งและปลาหมึก รสเข้มข้น",
+    description: "มาม่าต้มยำทะเลสดชื่น",
     isAvailable: true,
     tags: ["มาม่า", "ทะเล"],
-    featured: false
+    featured: false,
   },
   {
     id: 3107,
@@ -1516,10 +1337,10 @@ export const menuItems = [
     price: 79,
     originalPrice: 0,
     image: "",
-    description: "มาม่าต้มยำหมูสับ รสกลมกล่อม เผ็ดเล็กน้อย",
+    description: "หมูสับแน่นรสจัดจ้าน",
     isAvailable: true,
     tags: ["มาม่า"],
-    featured: false
+    featured: false,
   },
   {
     id: 3108,
@@ -1530,10 +1351,10 @@ export const menuItems = [
     price: 79,
     originalPrice: 0,
     image: "",
-    description: "มาม่าขี้เมาหมู รสจัด ใส่ผักและเครื่องเทศแบบขี้เมา",
+    description: "ขี้เมาหมูเผ็ดหอม",
     isAvailable: true,
     tags: ["มาม่า"],
-    featured: false
+    featured: false,
   },
   {
     id: 3109,
@@ -1544,10 +1365,10 @@ export const menuItems = [
     price: 79,
     originalPrice: 0,
     image: "",
-    description: "มาม่าขี้เมาไก่ รสจัด เสิร์ฟร้อน ๆ",
+    description: "ขี้เมาไก่เผ็ดร้อน",
     isAvailable: true,
     tags: ["มาม่า"],
-    featured: false
+    featured: false,
   },
   {
     id: 3110,
@@ -1558,10 +1379,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "มาม่าขี้เมาทะเล ใส่กุ้ง ปลาหมึก รสจัด เผ็ดนิด ๆ",
+    description: "ทะเลสดเผ็ดจัด",
     isAvailable: true,
     tags: ["มาม่า", "ทะเล"],
-    featured: false
+    featured: false,
   },
   {
     id: 3111,
@@ -1572,10 +1393,10 @@ export const menuItems = [
     price: 79,
     originalPrice: 0,
     image: "",
-    description: "มาม่ากะเพราหมู รสจัดจ้าน หอมกะเพรา",
+    description: "กะเพราหมูเผ็ดหอม",
     isAvailable: true,
     tags: ["มาม่า", "กะเพรา"],
-    featured: false
+    featured: false,
   },
   {
     id: 3112,
@@ -1586,10 +1407,10 @@ export const menuItems = [
     price: 79,
     originalPrice: 0,
     image: "",
-    description: "บะหมี่ไก่ราดซอสเทอริยากิ หวานเค็มกำลังดี",
+    description: "บะหมี่กับไก่ซอสหวานเค็ม",
     isAvailable: true,
     tags: ["เส้น", "เทอริยากิ"],
-    featured: false
+    featured: false,
   },
 
   // ======================
@@ -1604,10 +1425,10 @@ export const menuItems = [
     price: 59,
     originalPrice: 0,
     image: "",
-    description: "เฟรนช์ฟรายส์ ทอดกรอบ เสิร์ฟพร้อมซอสรสเด็ด",
+    description: "เฟรนช์ฟรายส์ทอดกรอบ",
     isAvailable: true,
     tags: ["ของทานเล่น"],
-    featured: false
+    featured: false,
   },
   {
     id: 3202,
@@ -1618,10 +1439,10 @@ export const menuItems = [
     price: 79,
     originalPrice: 0,
     image: "",
-    description: "ไก่ป๊อป ชุบแป้งทอดกรอบ เหมาะกับกินเล่น",
+    description: "ไก่ป๊อปกรอบเด้ง",
     isAvailable: true,
     tags: ["ของทานเล่น"],
-    featured: false
+    featured: false,
   },
   {
     id: 3203,
@@ -1632,10 +1453,10 @@ export const menuItems = [
     price: 89,
     originalPrice: 0,
     image: "",
-    description: "ชีสบอล ชีสยืด ทอดกรอบ เป็นของว่างสุดโปรดของสายชีส",
+    description: "ชีสบอลไส้ยืดหอมมัน",
     isAvailable: true,
     tags: ["ของทานเล่น"],
-    featured: false
+    featured: false,
   },
   {
     id: 3204,
@@ -1646,12 +1467,13 @@ export const menuItems = [
     price: 99,
     originalPrice: 0,
     image: "",
-    description: "เซ็ทรวม รวมของทานเล่นหลากหลาย เหมาะแชร์กับเพื่อน",
+    description: "ของทอดรวมชุดใหญ่",
     isAvailable: true,
     tags: ["ของทานเล่น", "เซ็ต"],
-    featured: false
-  }
+    featured: false,
+  },
 ];
+
 
 // ======================
 // หมวดหมู่หลักในหน้าเมนู
@@ -1660,18 +1482,17 @@ export const menuItems = [
 export const menuCategories = [
   { id: "all", name: "ทั้งหมด", description: "ดูทุกเมนูของร้าน TLTB Café" },
   { id: "นม", name: "นม", description: "นมและเมนูนมปรุงแต่ง" },
-  { id: "ชา / โกโก้ / โอวัลติน / ไมโล / มอลต์", name: "ชา / โกโก้ / โอวัลติน / ไมโล / มอลต์", description: "เครื่องดื่มกลุ่มชา โกโก้ ไมโล มอลต์ และนมต่าง ๆ" },
   { id: "กาแฟ", name: "กาแฟ", description: "กาแฟร้อน–เย็น ครบรูปแบบ" },
   { id: "โซดา", name: "โซดา", description: "เครื่องดื่มซ่า โซดาและ Italian soda" },
   { id: "มัทฉะ", name: "มัทฉะ", description: "เมนูมัทฉะและชาเขียว" },
   { id: "สมูทตี้", name: "สมูทตี้", description: "สมูทตี้และเครื่องดื่มปั่น" },
-  { id: "น้ำเปล่า / น้ำอัดลม / เบียร์", name: "น้ำเปล่า / น้ำอัดลม / เบียร์", description: "เครื่องดื่มเย็นพร้อมเสิร์ฟ" },
   { id: "โทสต์", name: "โทสต์", description: "ขนมปังโทสต์ท็อปปิ้งต่าง ๆ" },
   { id: "ปังเย็น", name: "ปังเย็น", description: "ปังเย็นและเมนูน้ำแข็งไส" },
   { id: "ขนมปังปิ้ง", name: "ขนมปังปิ้ง", description: "ขนมปังปิ้งสไตล์ร้านกาแฟ" },
+  { id: "ของทานเล่น", name: "ของทานเล่น", description: "ของว่างและของทานเล่นจากเมนู" },
   { id: "อาหารจานเดียว", name: "อาหารจานเดียว", description: "จานหลักที่ทานคนเดียวอิ่ม" },
   { id: "อาหารประเภทเส้น", name: "อาหารประเภทเส้น", description: "เมนูเส้น เช่น มาม่า สปาเกตตี" },
-  { id: "ของทานเล่น", name: "ของทานเล่น", description: "ขนมทานเล่นและของว่าง" }
+  { id: "น้ำเปล่า/น้ำแข็ง/เบียร์", name: "น้ำเปล่า/น้ำแข็ง/เบียร์", description: "น้ำเปล่า น้ำแข็ง และเบียร์" }
 ];
 
 // ======================
@@ -1710,12 +1531,6 @@ export const getMenuByCategory = (categoryId) => {
 
   let results = [];
   switch (categoryId) {
-    case "ชา / โกโก้ / โอวัลติน / ไมโล / มอลต์":
-      results = menuItems.filter((it) =>
-        byTextMatch(it, ["ชา", "โกโก้", "โอวัลติน", "ไมโล", "มอลต์"])
-      );
-      break;
-
     case "นม":
       results = menuItems.filter(
         (it) => it.subCategory === "นม" || byTextMatch(it, ["นม", "milk"]) 
@@ -1724,82 +1539,74 @@ export const getMenuByCategory = (categoryId) => {
 
     case "กาแฟ":
       results = menuItems.filter(
-        (it) => it.subCategory === "กาแฟ" || byTextMatch(it, ["กาแฟ"])
+        (it) => it.subCategory === "กาแฟ" || byTextMatch(it, ["กาแฟ"]) 
       );
       break;
 
     case "โซดา":
       results = menuItems.filter(
-        (it) => it.subCategory === "โซดา" || byTextMatch(it, ["โซดา"])
+        (it) => it.subCategory === "โซดา" || byTextMatch(it, ["โซดา"]) 
       );
       break;
 
     case "มัทฉะ":
       results = menuItems.filter(
-        (it) =>
-          it.subCategory === "มัทฉะ" ||
-          byTextMatch(it, ["มัทฉะ", "ชาเขียว", "matcha"])
+        (it) => it.subCategory === "มัทฉะ" || byTextMatch(it, ["มัทฉะ", "ชาเขียว", "matcha"]) 
       );
       break;
 
     case "สมูทตี้":
       results = menuItems.filter(
-        (it) =>
-          it.subCategory === "สมูทตี้" ||
-          byTextMatch(it, ["สมูทตี้", "smoothie"])
-      );
-      break;
-
-    case "น้ำเปล่า / น้ำอัดลม / เบียร์ / น้ำแข็ง":
-      results = menuItems.filter((it) =>
-        byTextMatch(it, ["น้ำเปล่า", "น้ำอัดลม", "เบียร์", "น้ำแข็ง", "cola", "water", "ice"])
+        (it) => it.subCategory === "สมูทตี้" || byTextMatch(it, ["สมูทตี้", "smoothie"]) 
       );
       break;
 
     case "โทสต์":
       results = menuItems.filter(
-        (it) =>
-          (it.subCategory || "").includes("โทสต์") ||
-          byTextMatch(it, ["โทสต์", "toast"])
+        (it) => (it.subCategory || "").includes("โทสต์") || byTextMatch(it, ["โทสต์", "toast"]) 
       );
       break;
 
     case "ปังเย็น":
       results = menuItems.filter(
-        (it) => it.subCategory === "ปังเย็น" || byTextMatch(it, ["ปังเย็น"])
+        (it) => it.subCategory === "ปังเย็น" || byTextMatch(it, ["ปังเย็น"]) 
       );
       break;
 
     case "ขนมปังปิ้ง":
-      results = menuItems.filter((it) =>
-        byTextMatch(it, ["ขนมปังปิ้ง", "ขนมปัง"])
-      );
+      results = menuItems.filter((it) => byTextMatch(it, ["ขนมปังปิ้ง", "ขนมปัง"]));
       break;
 
     case "อาหารจานเดียว":
       results = menuItems.filter(
         (it) =>
           it.subCategory === "อาหารจานเดียว" ||
-          byTextMatch(it, ["อาหารจานเดียว", "ข้าว"])
+          byTextMatch(it, ["อาหารจานเดียว", "ข้าว", "ของทานเล่น", "ของว่าง", "ทานเล่น", "snack"]) 
       );
       break;
 
     case "อาหารประเภทเส้น":
       results = menuItems.filter(
-        (it) =>
-          it.subCategory === "อาหารประเภทเส้น" ||
-          byTextMatch(it, ["มาม่า", "สปาเกตตี", "เส้น"])
+        (it) => it.subCategory === "อาหารประเภทเส้น" || byTextMatch(it, ["มาม่า", "สปาเกตตี", "เส้น"]) 
       );
       break;
 
     case "ของทานเล่น":
       results = menuItems.filter((it) =>
-        byTextMatch(it, ["ของทานเล่น", "ทานเล่น", "ของว่าง", "snack"])
+        it.subCategory === "ของทานเล่น" ||
+        byTextMatch(it, ["ของทานเล่น","ของว่าง"
+        ])
+      );
+      break;
+
+    case "น้ำเปล่า/น้ำแข็ง/เบียร์":
+      results = menuItems.filter((it) =>
+        byTextMatch(it, ["น้ำเปล่า", "น้ำอัดลม", "เบียร์", "น้ำแข็ง", "โค้ก", "coke", "water", "ice"]) 
       );
       break;
 
     default:
-      results = menuItems.filter((item) => item.category === categoryId);
+      results = menuItems.filter((item) => item.subCategory === categoryId || item.category === categoryId);
   }
 
   return dedupeByName(results);

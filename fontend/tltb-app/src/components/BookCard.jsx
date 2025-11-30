@@ -38,9 +38,13 @@ function BookCard({ item, onAction, actionLabel = 'สั่งเลย' }) {
           <div className="image-surface" />
         )}
 
-        {/* featured badge */}
-        {item && item.featured && (
-          <div className="category-badge">แนะนำ</div>
+        {/* featured / new badge: prefer showing "ใหม่" when item is new, otherwise show "แนะนำ" for featured items */}
+        {item && (
+          ((item.isNew === true) || (item.tags || []).some(t => String(t).toLowerCase() === 'ใหม่' || String(t).toLowerCase() === 'new')) ? (
+            <div className="category-badge">ใหม่</div>
+          ) : item.featured ? (
+            <div className="category-badge">แนะนำ</div>
+          ) : null
         )}
       </div>
 
@@ -59,7 +63,17 @@ function BookCard({ item, onAction, actionLabel = 'สั่งเลย' }) {
           </div>
 
           {onAction ? (
-            <button onClick={handleAction} className="order-btn">{actionLabel}</button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleAction();
+              }}
+              className="order-btn"
+            >
+              {actionLabel}
+            </button>
           ) : (
             <Link to={`/menu/${id}`} className="order-btn">{actionLabel}</Link>
           )}
