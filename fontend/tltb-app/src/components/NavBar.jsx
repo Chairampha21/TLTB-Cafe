@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 
-function NavBar({ cartCount = 0, onCartClick }) {
+function NavBar({ cartCount = 0, onCartClick, onAuthClick, authOpen = false }) {
   return (
     <header className="site-nav">
       <div className="nav-container">
@@ -42,6 +42,9 @@ function NavBar({ cartCount = 0, onCartClick }) {
         </nav>
 
         <div className="cart-wrap">
+          <button className="person-btn nav-pill" aria-label="Open auth" onClick={() => typeof onAuthClick === 'function' && onAuthClick()}>
+            <span className="person-emoji" aria-hidden>👤</span>
+          </button>
           <button className="cart-btn nav-pill" aria-label="Open cart" onClick={() => typeof onCartClick === 'function' && onCartClick()}>
             <span className="cart-emoji" aria-hidden>🧺</span>
           </button>

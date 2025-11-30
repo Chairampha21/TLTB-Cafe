@@ -72,6 +72,23 @@
 
 .cart-emoji{font-size:1.05rem}
 
+/* person/profile button next to the cart */
+.person-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  background: var(--cafe-cream); /* #F8F4E1 */
+  color: var(--cafe-espresso);
+  border: 1px solid rgba(175,143,111,0.06);
+  box-shadow: 0 6px 16px rgba(84,51,16,0.06);
+  cursor: pointer;
+}
+
+.person-emoji { font-size: 1rem; }
+
 .site-logo-placeholder {
   display: inline-flex;
   align-items: baseline;

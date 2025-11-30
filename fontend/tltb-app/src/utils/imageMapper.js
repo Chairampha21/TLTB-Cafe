@@ -5,6 +5,8 @@ const imageMap = {
   'นมชมพู': '/images/food-cover/milk_pink.jpg',
   'นมคาราเมล': '/images/food-cover/milk_caramel.png',
   'นมสดสตรอเบอรี่': '/images/food-cover/milk_strawberry.png',
+  'นมสตรอว์เบอร์รี่': '/images/food-cover/milk_strawberry.png',
+  'นมสตอเบอรี่': '/images/food-cover/milk_strawberry.png',
   'ชาไทย': '/images/food-cover/thai_milk_tea.jpg',
   'ชาเขียว': '/images/food-cover/green_milk_tea.jpg',
   'โกโก้': '/images/food-cover/cocoa_drink.jpg',
@@ -19,19 +21,23 @@ const imageMap = {
   'ลาเต้': '/images/food-cover/latte.png',
   'คาปูชิโน่': '/images/food-cover/cappuccino.png',
   'เอสเพรสโซ': '/images/food-cover/espresso.png',
+  'ลาเต้รสช็อกโกแลต': '/images/food-cover/latte.png',
 
   // Sodas
   'แดงมะนาวโซดา': '/images/food-cover/red_lime_soda.png',
   'บ๊วยโซดา': '/images/food-cover/plum_soda.png',
   'อัญชันน้ำผึ้งมะนาว': '/images/food-cover/butterfly_pea_honey_lemon.png',
+  'อัญชันโซดา': '/images/food-cover/butterfly_pea_honey_lemon.png',
   'น้ำผึ้งมะนาวโซดา': '/images/food-cover/honey_lemo_ soda.png',
   'น้ำแดงน้ำผึ้งมะนาว': '/images/food-cover/red_syrup_honey lemon.png',
   'อิตาเลียนโซดา': '/images/food-cover/italian_soda.png',
+  'น้ำแดงโซดา': '/images/food-cover/red_lime_soda.png',
 
   // Matcha
   'มัทฉะลาเต้': '/images/food-cover/matcha_latte.png',
   'มัทฉะโฟมมะพร้าว': '/images/food-cover/matcha_coconut_foam.png',
   'มัทฉะสตอเบอรี่': '/images/food-cover/matcha_strawberry.png',
+  'มัทฉะสตรอว์เบอร์รี่': '/images/food-cover/matcha_strawberry.png',
   'เพียวมัทฉะ': '/images/food-cover/matcha_pure.png',
 
   // Smoothies
@@ -48,7 +54,7 @@ const imageMap = {
   'เบียร์สิงห์': '/images/food-cover/beer_singha.png',
   'เบียร์ลีโอ': '/images/food-cover/beer_leo.png',
   'สโนวี่ ไวเซ่น': '/images/food-cover/beer_snowy_weizen.png',
-  'สโนวี่ โรเซ่': '/images/food-cover/beer_snowy_rose.pngbeer_snowy_rose.png',
+  'สโนวี่ โรเซ่': '/images/food-cover/beer_snowy_rose.png',
   'น้ำแข็งเปล่า(แก้ว)': '/images/food-cover/ice_plain_glass.png',
   'น้ำแข็งเปล่า(ถัง)': '/images/food-cover/ice_plain_bucket.png',
 
@@ -133,6 +139,33 @@ export function getImagePathByName(thaiName) {
   const key = thaiName.trim();
   if (imageMap[key]) return imageMap[key];
   // fallback: return null to let components use their item.image or placeholder
+  return null;
+}
+
+// Find a best-fit image for a full menu item object.
+// Tries: explicit name -> subCategory -> category token -> first tag
+export function getImageForItem(item = {}) {
+  if (!item) return null;
+  // if item already has explicit image path, prefer it
+  if (item.image && item.image.trim()) return item.image;
+
+  const tryKeys = [];
+  if (item.name) tryKeys.push(item.name);
+  if (item.subCategory) tryKeys.push(item.subCategory);
+  if (item.category) tryKeys.push(item.category);
+  if (Array.isArray(item.tags)) tryKeys.push(...item.tags);
+
+  for (const raw of tryKeys) {
+    if (!raw) continue;
+    const key = ('' + raw).trim();
+    if (imageMap[key]) return imageMap[key];
+    // try simpler tokenization: split by spaces and slashes
+    const parts = key.split(/\s|\/|\|/).map((p) => p.trim()).filter(Boolean);
+    for (const p of parts) {
+      if (imageMap[p]) return imageMap[p];
+    }
+  }
+
   return null;
 }
 

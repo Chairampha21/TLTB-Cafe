@@ -18,7 +18,7 @@ function CartPanel({ cart = [], onClose, onIncrement, onDecrement, onRemove }) {
           <ul className="cart-list">
             {cart.map((it) => (
               <li key={it.id} className="cart-item">
-                <img src={(process.env.PUBLIC_URL || '') + (it.image || '/images/food-cover/placeholder.png')} alt={it.name} className="cart-item-img" />
+                <img src={(process.env.PUBLIC_URL || '') + (it.image || '/images/food-cover/toast_milk.png')} alt={it.name} className="cart-item-img" />
                 <div className="cart-item-meta">
                   <div className="cart-item-name">{it.name}</div>
                   <div className="cart-item-price">{it.price ? `${it.price} บาท` : '-'}</div>

@@ -19,7 +19,7 @@ function ContactPage({ onAddToCart }) {
     // simulate send
     setStatus({ type: 'sending', text: 'กำลังส่ง...' });
     setTimeout(() => {
-      setStatus({ type: 'success', text: 'ส่งข้อความเรียบร้อยแล้ว ขอบคุณค่ะ!' });
+      setStatus({ type: 'success', text: 'ส่งข้อความเรียบร้อยแล้ว!' });
       setForm({ name: '', email: '', message: '' });
     }, 900);
   };
@@ -82,7 +82,7 @@ function ContactPage({ onAddToCart }) {
               </label>
 
               <div className="form-row">
-                <button type="submit" className="order-btn">สั่งเลย</button>
+                <button type="submit" className="order-btn">ส่ง</button>
                 <div className="status">
                   {status && <span className={status.type}>{status.text}</span>}
                 </div>
@@ -92,7 +92,21 @@ function ContactPage({ onAddToCart }) {
         </section>
 
         <footer className="contact-footer">
-          <p>ติดตามเราได้ที่ช่องทางโซเชียล — Facebook / Instagram / Line (ลิงก์ตัวอย่าง)</p>
+          <p>ติดตามเราได้ที่ช่องทางโซเชียล</p>
+          <ul className="social-list">
+            <li>
+              <a className="social-link social-tiktok" href="https://www.tiktok.com/@tltb-cafe" target="_blank" rel="noreferrer"><span className="social-text">TikTok: TLTB Café</span></a>
+            </li>
+            <li>
+              <a className="social-link social-instagram" href="https://www.instagram.com/tltb-cafe" target="_blank" rel="noreferrer"><span className="social-text">Instagram: TLTB Café</span></a>
+            </li>
+            <li>
+              <a className="social-link social-facebook" href="https://www.facebook.com/tltb-cafe" target="_blank" rel="noreferrer"><span className="social-text">Facebook: TLTB Café</span></a>
+            </li>
+            <li>
+              <a className="social-link social-linkedin" href="https://www.linkedin.com/company/tltb-cafe" target="_blank" rel="noreferrer"><span className="social-text">LinkedIn: TLTB Café</span></a>
+            </li>
+          </ul>
         </footer>
       </div>
     </main>

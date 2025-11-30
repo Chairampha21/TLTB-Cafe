@@ -1,0 +1,240 @@
+/* src/components/ReviewsSection.css */
+
+:root {
+  --cafe-cream: #f8f4e1;
+  --cafe-latte: #af8f6f;
+  --cafe-mocha: #74512d;
+  --cafe-espresso: #543310;
+}
+
+/* พื้นหลังส่วนรีวิวทั้งหมด */
+.reviews-section {
+  background: var(--cafe-cream);
+  padding: 4rem 1.5rem 3rem;
+}
+
+/* กล่อง hero ด้านบน */
+.reviews-hero {
+  max-width: 960px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.reviews-eyebrow {
+  font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 1.1rem;
+  color: var(--cafe-mocha);
+  margin-bottom: 0.25rem;
+}
+
+.reviews-title {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cafe-espresso);
+  margin-bottom: 0.5rem;
+}
+
+.reviews-subtitle {
+  font-size: 0.95rem;
+  color: #6b5a46;
+}
+
+.brand-inline {
+  font-weight: 700;
+  color: var(--cafe-mocha);
+}
+
+/* การ์ดรีวิว 3 ใบ */
+.reviews-cards {
+  max-width: 1120px;
+  margin: 0 auto 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.75rem;
+}
+
+.review-card {
+  /* soft cream panel to match cart surface */
+  background: linear-gradient(180deg, rgba(248,244,225,0.98), #ffffff);
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 12px 30px rgba(84,51,16,0.06);
+  border: 1px solid rgba(175,143,111,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ส่วนบนของการ์ด: avatar / ชื่อ / ดาว */
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.avatar-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--cafe-mocha), var(--cafe-espresso));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--cafe-cream);
+  font-size: 1.1rem;
+}
+
+.reviewer-info {
+  flex: 1;
+}
+
+.reviewer-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cafe-espresso);
+  margin: 0;
+}
+
+.reviewer-role {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: #8b7b68;
+}
+
+.review-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  font-size: 1rem;
+}
+
+.star--filled {
+  color: #ffb400;
+}
+
+.star--empty {
+  color: #ddd2c4;
+}
+
+/* เนื้อหารีวิว */
+.review-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #6f5f4a;
+  margin: 0;
+}
+
+/* แถบ CTA ด้านล่างฟีลเดียวกับรูปตัวอย่าง */
+.reviews-cta-strip {
+  max-width: 1120px;
+  margin: 0 auto;
+  /* use the cream panel so it reads as part of the soft surface */
+  background: linear-gradient(180deg, rgba(248,244,225,0.98), #ffffff);
+  border-radius: 1.5rem;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 12px 30px rgba(84,51,16,0.06);
+  border: 1px solid rgba(175,143,111,0.08);
+}
+
+.reviews-cta-strip h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.2rem;
+  color: var(--cafe-espresso);
+}
+
+.reviews-cta-strip p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #7a6a55;
+}
+
+.cta-text {
+  flex: 1;
+}
+
+.cta-form {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+}
+
+.cta-input {
+  border-radius: 999px;
+  border: 1px solid rgba(175,143,111,0.08);
+  padding: 0.55rem 1rem;
+  min-width: 220px;
+  font-size: 0.9rem;
+  outline: none;
+  background: #fff;
+}
+
+.cta-input:focus {
+  border-color: var(--cafe-mocha);
+  box-shadow: 0 0 0 2px rgba(116, 81, 45, 0.15);
+}
+
+.cta-button {
+  border-radius: 999px;
+  border: none;
+  padding: 0.65rem 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  background: linear-gradient(180deg, #5b3216, var(--cafe-espresso));
+  color: var(--cafe-cream);
+  box-shadow: 0 14px 36px rgba(84,51,16,0.16);
+  transition: transform 0.12s ease, box-shadow 0.14s ease, filter 0.12s ease;
+}
+
+.cta-button:hover {
+  background: linear-gradient(180deg, #45210b, #3c250c);
+  box-shadow: 0 22px 56px rgba(84,51,16,0.20);
+  transform: translateY(-2px);
+}
+
+/* ----------------- Responsive ------------------ */
+
+@media (max-width: 960px) {
+  .reviews-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reviews-cta-strip {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cta-form {
+    width: 100%;
+  }
+
+  .cta-input {
+    flex: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .reviews-section {
+    padding: 3rem 1.25rem 2.5rem;
+  }
+
+  .reviews-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .review-card {
+    padding: 1.25rem 1.3rem;
+  }
+
+  .reviews-title {
+    font-size: 1.6rem;
+  }
+}

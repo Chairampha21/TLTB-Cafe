@@ -5,13 +5,13 @@ import HomePage from "./pages/HomePage";
 import MenuPage from "./pages/MenuPage";
 import ContactPage from "./pages/ContactPage";
 import NavBar from "./components/NavBar";
-import OrderModal from "./components/OrderModal";
+import AuthModal from "./components/AuthModal";
 import { getMenuItemById } from "./data/menuData";
 import CartPanel from "./components/CartPanel";
 
 function App() {
   const [cart, setCart] = useState([]);
-  const [modalItem, setModalItem] = useState(null);
+  
 
   const openOrderFor = (item) => {
     // Immediately add one unit of the clicked item to cart
@@ -20,21 +20,7 @@ function App() {
     addToCart(item.id, 1);
   };
 
-  const closeModal = () => setModalItem(null);
-
-  const handleConfirmAdd = ({ variantId, qty }) => {
-    const variant = getMenuItemById(variantId);
-    if (!variant) return;
-    setCart((c) => {
-      // merge if same id exists
-      const existing = c.find((x) => x.id === variant.id);
-      if (existing) {
-        return c.map((x) => (x.id === variant.id ? { ...x, qty: x.qty + qty } : x));
-      }
-      return [...c, { id: variant.id, name: variant.name, drinkType: variant.drinkType || null, price: variant.price, image: variant.image, qty }];
-    });
-    closeModal();
-  };
+  
 
   const addToCart = (variantId, qty = 1) => {
     const variant = getMenuItemById(variantId);
@@ -64,24 +50,25 @@ function App() {
   };
 
   const [cartOpen, setCartOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
 
   // debug helper removed (not used)
 
   return (
     <div className="min-h-screen bg-[#F8F4E1]">
-      <NavBar cartCount={cart.reduce((s, i) => s + (i.qty || 0), 0)} onCartClick={() => setCartOpen((v) => !v)} />
+      <NavBar
+        cartCount={cart.reduce((s, i) => s + (i.qty || 0), 0)}
+        onCartClick={() => setCartOpen((v) => !v)}
+        onAuthClick={() => setAuthOpen(true)}
+        authOpen={authOpen}
+      />
       <Routes>
-        <Route path="/" element={<HomePage onAddToCart={openOrderFor} />} />
-        <Route path="/menu" element={<MenuPage onAddToCart={openOrderFor} />} />
-        <Route path="/contact" element={<ContactPage onAddToCart={openOrderFor} />} />
+        <Route path="/" element={<HomePage onAddToCart={openOrderFor} onOpenAuth={() => setAuthOpen(true)} />} />
+        <Route path="/menu" element={<MenuPage onAddToCart={openOrderFor} onOpenAuth={() => setAuthOpen(true)} />} />
+        <Route path="/contact" element={<ContactPage onAddToCart={openOrderFor} onOpenAuth={() => setAuthOpen(true)} />} />
       </Routes>
 
-      <OrderModal
-        item={modalItem}
-        isOpen={!!modalItem}
-        onClose={closeModal}
-        onConfirm={handleConfirmAdd}
-      />
+      {/* Order modal removed: quick-add flow adds items directly to cart */}
 
       {cartOpen && (
         <CartPanel
@@ -92,6 +79,7 @@ function App() {
           onRemove={removeItem}
         />
       )}
+      <AuthModal isOpen={authOpen} onClose={() => setAuthOpen(false)} />
     </div>
   );
 }

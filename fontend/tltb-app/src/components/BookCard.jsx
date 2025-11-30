@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getImagePathByName } from '../utils/imageMapper';
+import { getImagePathByName, getImageForItem } from '../utils/imageMapper';
 
 /**
  * BookCard
@@ -20,9 +20,14 @@ function BookCard({ item, onAction, actionLabel = 'สั่งเลย' }) {
     if (onAction) onAction(item);
   };
 
-  // prefer explicit image field, otherwise try to map by Thai name
+  // prefer explicit image field, otherwise try to map by item fields
   const resolved = image || getImagePathByName(item?.name || displayTitle);
-  const imageSrc = resolved ? (process.env.PUBLIC_URL + resolved) : null;
+  // try smarter resolver using subCategory/category/tags
+  const resolved2 = resolved || getImagePathByName(item?.subCategory) || getImagePathByName(item?.category);
+  // final attempt: use helper that inspects tags and other fields
+  const best = resolved2 || getImageForItem(item);
+  const fallback = '/images/food-cover/toast_milk.png';
+  const imageSrc = (process.env.PUBLIC_URL || '') + (best || fallback);
 
   return (
     <article className="menu-item-card">

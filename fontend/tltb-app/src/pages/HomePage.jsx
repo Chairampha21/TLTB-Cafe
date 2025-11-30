@@ -1,13 +1,21 @@
 import { Link } from 'react-router-dom';
 import "../components/HomePage.css";
 import heroBg from "../coffee-shop-1448x543.webp";
-import { getFeaturedMenu } from "../data/menuData";
+import { getFeaturedMenu, menuItems } from "../data/menuData";
 import BookCard from '../components/BookCard';
+import ReviewsSection from '../components/ReviewsSection';
+import SiteFooter from '../components/SiteFooter';
 import "../components/MenuPage.css"; // reuse card/grid styles for recommended
 
-function HomePage({ onAddToCart }) {
+function HomePage({ onAddToCart, onOpenAuth }) {
   // recommended: pull featured items from data file
   const recommended = getFeaturedMenu(4);
+
+  // newest items: sort by id descending (higher id = newer), only available
+  const newest = [...menuItems]
+    .filter((i) => i.isAvailable)
+    .sort((a, b) => b.id - a.id)
+    .slice(0, 4);
 
   const handleAdd = (item) => {
     if (onAddToCart) onAddToCart(item);
@@ -15,8 +23,8 @@ function HomePage({ onAddToCart }) {
   };
 
   return (
-    <div className="min-h-screen menu-page">
-      <main className="homepage">
+    <div className="min-h-screen menu-page" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <main className="homepage" style={{ flex: 1 }}>
         <section
           className="homepage-hero hero-banner"
           style={{
@@ -45,7 +53,28 @@ function HomePage({ onAddToCart }) {
             </div>
           </div>
         </section>
+
+          {/* New menu section (เมนูใหม่) */}
+          <section className="menu-grid-wrapper" style={{ marginTop: '1.25rem' }}>
+            <div className="menu-container max-w-6xl mx-auto px-4">
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
+                <h2 style={{ margin: 0, color: 'var(--cafe-espresso)', fontSize: '1.15rem' }}>เมนูใหม่</h2>
+              </div>
+
+              <div className="menu-grid">
+                {newest.map((item) => (
+                  <BookCard key={item.id} item={item} onAction={() => handleAdd(item)} actionLabel="สั่งเลย" />
+                ))}
+              </div>
+            </div>
+          </section>
+
+        {/* Reviews section shown under New menu */}
+        <ReviewsSection onOpenAuth={onOpenAuth} />
       </main>
+
+      {/* Footer placed at page bottom */}
+      <SiteFooter />
     </div>
   );
 }
