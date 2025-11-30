@@ -1,10 +1,10 @@
 /* Contact page styles (aligned with site theme) */
-.contact-page {
+ .contact-page {
   color: var(--cafe-espresso);
-  /* use the same soft cream as the cart for the overall page background */
+  /* original cream background kept; card borders will use latte */
   background: var(--cafe-cream);
   min-height: 100vh;
-}
+ }
 
 /* make sure contact layout uses border-box to avoid padding causing overflow */
 .contact-container,
@@ -32,7 +32,7 @@
   border-radius: 16px;
   padding: 1.1rem;
   box-shadow: 0 14px 34px rgba(84,51,16,0.06);
-  border: 1px solid rgba(175,143,111,0.08);
+  border: 1px solid var(--cafe-latte);
   overflow: hidden;
 }
 .contact-card:hover { transform: translateY(-6px); box-shadow: 0 26px 58px rgba(84,51,16,0.10); transition: transform 160ms ease, box-shadow 220ms ease; }

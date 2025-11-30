@@ -16,7 +16,16 @@ function BookCard({ item, onAction, actionLabel = 'สั่งเลย' }) {
   const displayPrice = price || item?.price || null;
 
   const handleAction = () => {
-    console.log('BookCard: action clicked for', item && item.id);
+    console.debug('BookCard: action clicked for', item && item.id);
+    // dispatch global add-to-cart so App can handle opening the cart
+    try {
+      const detail = { id: item && (item.id || item._id), item, qty: 1 };
+      console.debug('BookCard: dispatching tltb:add-to-cart', detail);
+      window.dispatchEvent(new CustomEvent('tltb:add-to-cart', { detail }));
+      console.debug('BookCard: dispatched tltb:add-to-cart');
+    } catch (err) {
+      // ignore if CustomEvent isn't available in environment
+    }
     if (onAction) onAction(item);
   };
 
@@ -65,9 +74,7 @@ function BookCard({ item, onAction, actionLabel = 'สั่งเลย' }) {
           {onAction ? (
             <button
               type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
+              onClick={() => {
                 handleAction();
               }}
               className="order-btn"
@@ -75,7 +82,16 @@ function BookCard({ item, onAction, actionLabel = 'สั่งเลย' }) {
               {actionLabel}
             </button>
           ) : (
-            <Link to={`/menu/${id}`} className="order-btn">{actionLabel}</Link>
+            <Link
+              to={`/menu/${id}`}
+              className="order-btn"
+              onClick={(e) => {
+                // still dispatch add-to-cart, allow navigation to proceed
+                handleAction();
+              }}
+            >
+              {actionLabel}
+            </Link>
           )}
         </div>
       </div>

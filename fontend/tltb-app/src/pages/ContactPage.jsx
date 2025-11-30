@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 import '../components/ContactPage.css';
 
 function ContactPage({ onAddToCart }) {
@@ -19,8 +20,14 @@ function ContactPage({ onAddToCart }) {
     // simulate send
     setStatus({ type: 'sending', text: 'กำลังส่ง...' });
     setTimeout(() => {
-      setStatus({ type: 'success', text: 'ส่งข้อความเรียบร้อยแล้ว!' });
+      setStatus(null);
       setForm({ name: '', email: '', message: '' });
+      Swal.fire({
+        title: 'ส่งข้อความเรียบร้อยแล้ว',
+        text: 'ขอบคุณสำหรับข้อความของคุณ เราจะติดต่อกลับโดยเร็วที่สุด',
+        icon: 'success',
+        confirmButtonText: 'ตกลง'
+      });
     }, 900);
   };
 

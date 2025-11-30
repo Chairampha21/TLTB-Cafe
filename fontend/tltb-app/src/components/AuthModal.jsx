@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import './AuthModal.css';
 
@@ -15,7 +16,8 @@ const ADMIN_ACCOUNT = {
   password: 'admin123',
 };
 
-function AuthModal({ isOpen, onClose }) {
+function AuthModal({ isOpen, onClose, onLoginSuccess }) {
+  const navigate = useNavigate();
   const [tab, setTab] = useState('signup');
   const [form, setForm] = useState({ name: '', email: '', password: '' });
 
@@ -47,14 +49,9 @@ function AuthModal({ isOpen, onClose }) {
 
     // check admin
     if (loginEmail === ADMIN_ACCOUNT.email && loginPassword === ADMIN_ACCOUNT.password) {
-      Swal.fire({
-        title: 'เข้าสู่ระบบสำเร็จ!',
-        text: 'โหมดแอดมิน (Admin)',
-        icon: 'success',
-        confirmButtonText: 'ตกลง',
-      });
-      // TODO: setRole('admin') or persist in app context
+      if (onLoginSuccess) onLoginSuccess({ role: 'admin', email: loginEmail });
       onClose();
+      navigate('/admin/all-food');
       return;
     }
 
@@ -66,7 +63,7 @@ function AuthModal({ isOpen, onClose }) {
         icon: 'success',
         confirmButtonText: 'ตกลง',
       });
-      // TODO: setRole('buyer')
+      if (onLoginSuccess) onLoginSuccess({ role: 'buyer', email: loginEmail });
       onClose();
       return;
     }

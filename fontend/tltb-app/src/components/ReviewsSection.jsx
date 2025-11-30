@@ -89,11 +89,6 @@ function ReviewsSection({ onOpenAuth }) {
             e.preventDefault();
           }}
         >
-          <input
-            type="email"
-            placeholder="กรอกอีเมลสำหรับรับข่าวสาร"
-            className="cta-input"
-          />
           <button type="button" className="cta-button" onClick={() => onOpenAuth && onOpenAuth()}>
             สมัครสมาชิก
           </button>

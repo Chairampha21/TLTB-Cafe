@@ -1,0 +1,170 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../components/AllFoodPage.css';
+import { menuItems } from '../data/menuData';
+import Swal from 'sweetalert2';
+
+function AllFoodPage({ onAddToCart }) {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  // Get all unique categories from menu items
+  const categories = ['all', ...new Set(menuItems.map(item => item.category))];
+
+  // Filter items based on search and category
+  const filteredItems = menuItems.filter((item) => {
+    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  return (
+    <div className="min-h-screen all-food-page">
+      <main className="homepage">
+        <section style={{ paddingTop: '0.25rem', paddingBottom: '1rem' }}>
+          <div className="menu-container max-w-6xl mx-auto px-4">
+            {/* Header Section */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', gap: '1rem' }}>
+              <button onClick={() => navigate(-1)} className="btn btn-primary back-btn">← กลับ</button>
+
+              <div>
+                <h1 style={{ margin: 0, color: 'var(--cafe-espresso)', fontSize: '2rem' }}>อาหารทั้งหมด</h1>
+                <p className="menu-sub" style={{ margin: '0.25rem 0 0' }}>ค้นหาอาหารที่ต้องการ หรือเลือกจากหมวดหมู่ (Admin)</p>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div className="search-input-wrapper" style={{ width: '320px' }}>
+                  <span className="search-icon">🔍</span>
+                  <input
+                    type="text"
+                    placeholder="ค้นหาอาหาร..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
+
+                <div className="result-badge">
+                  พบ <span>{filteredItems.length}</span> / <span>{menuItems.length}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Category Filter */}
+            <div className="categories" style={{ marginBottom: '1.5rem' }}>
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`category-pill ${selectedCategory === category ? 'active' : ''}`}
+                >
+                  {category === 'all' ? 'ทั้งหมด' : category}
+                </button>
+              ))}
+            </div>
+
+            {/* Food Table */}
+            <div style={{ overflowX: 'auto', borderRadius: '0.75rem', boxShadow: '0 4px 12px rgba(84, 51, 16, 0.1)' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: 'white' }}>
+                <thead>
+                  <tr style={{ backgroundColor: 'var(--cafe-mocha)', color: 'white' }}>
+                    <th style={{ padding: '1rem', textAlign: 'left', fontWeight: '700', borderBottom: '2px solid var(--cafe-espresso)' }}>ชื่อเมนู</th>
+                    <th style={{ padding: '1rem', textAlign: 'left', fontWeight: '700', borderBottom: '2px solid var(--cafe-espresso)' }}>หมวดหมู่</th>
+                    <th style={{ padding: '1rem', textAlign: 'left', fontWeight: '700', borderBottom: '2px solid var(--cafe-espresso)' }}>ราคา</th>
+                    <th style={{ padding: '1rem', textAlign: 'center', fontWeight: '700', borderBottom: '2px solid var(--cafe-espresso)' }}>สถานะ</th>
+                      <th style={{ padding: '1rem', textAlign: 'center', fontWeight: '700', borderBottom: '2px solid var(--cafe-espresso)' }}>จัดการ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredItems.length > 0 ? (
+                    filteredItems.map((item, index) => (
+                      <tr 
+                        key={item.id}
+                        style={{ 
+                          backgroundColor: index % 2 === 0 ? '#fdfaf0' : 'white',
+                          borderBottom: '1px solid rgba(175, 143, 111, 0.2)',
+                          transition: 'background-color 0.2s ease'
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(175, 143, 111, 0.08)'}
+                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = index % 2 === 0 ? '#fdfaf0' : 'white'}
+                      >
+                        <td style={{ padding: '1rem', color: 'var(--cafe-espresso)', fontWeight: '600' }}>{item.name}</td>
+                        <td style={{ padding: '1rem', color: 'var(--cafe-mocha)' }}>{item.category}</td>
+                        <td style={{ padding: '1rem', color: 'var(--cafe-mocha)', fontWeight: '600' }}>฿{item.price}</td>
+                        <td style={{ padding: '1rem', textAlign: 'center' }}>
+                          <span style={{
+                            display: 'inline-block',
+                            padding: '0.25rem 0.75rem',
+                            borderRadius: '999px',
+                            fontSize: '0.8rem',
+                            fontWeight: '600',
+                            backgroundColor: item.isAvailable ? '#e8f5e9' : '#ffebee',
+                            color: item.isAvailable ? '#2e7d32' : '#c62828'
+                          }}>
+                            {item.isAvailable ? 'มี' : 'หมด'}
+                          </span>
+                        </td>
+                          <td style={{ padding: '1rem', textAlign: 'center', display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
+                          <button
+                            onClick={() => {
+                              // Dispatch a global event to add this item to cart (App listens and will open cart)
+                              try {
+                                window.dispatchEvent(new CustomEvent('tltb:add-to-cart', { detail: { id: item.id, qty: 1, item } }));
+                              } catch (err) {
+                                // fallback to calling prop if dispatch isn't available
+                                if (typeof onAddToCart === 'function') onAddToCart(item);
+                                else console.log('add to cart (all):', item);
+                              }
+                            }}
+                            className="btn btn-primary small-btn"
+                          >
+                            สั่งเลย
+                          </button>
+                          <button onClick={() => navigate(`/admin/edit-food/${item.id}`)} className="btn btn-primary small-btn">แก้ไข</button>
+                          <button
+                            onClick={() => {
+                              Swal.fire({
+                                title: 'ต้องการลบเมนูนี้ใช่หรือไม่?',
+                                text: `${item.name} จะถูกลบออกจากระบบ`,
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#d32f2f',
+                                cancelButtonColor: 'gray',
+                                confirmButtonText: 'ลบ',
+                                cancelButtonText: 'ยกเลิก',
+                              }).then((result) => {
+                                if (result.isConfirmed) {
+                                  Swal.fire({
+                                    title: 'ลบสำเร็จ',
+                                    text: `${item.name} ถูกลบออกแล้ว`,
+                                    icon: 'success',
+                                    timer: 1500,
+                                  });
+                                }
+                              });
+                            }}
+                            className="btn btn-danger small-btn"
+                          >
+                            ลบ
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                        <td colSpan="6" style={{ padding: '2rem', textAlign: 'center', color: 'var(--cafe-mocha)' }}>
+                        ไม่พบอาหารที่ค้นหา
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
+
+export default AllFoodPage;
