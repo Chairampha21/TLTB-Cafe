@@ -1,3 +1,4 @@
+// src/components/BookCard.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getImagePathByName, getImageForItem } from '../utils/imageMapper';
@@ -6,34 +7,52 @@ import { getImagePathByName, getImageForItem } from '../utils/imageMapper';
  * BookCard
  * Props:
  * - item: { id, title, author, price, image, description }
- * - onAction: function(item) for primary button (optional)
+ * - onAction: function(item)  (optional)
+ * - onAddToCart: function(item)  (optional)
  * - actionLabel: string for button text (default: 'สั่งเลย')
  */
-function BookCard({ item, onAction, actionLabel = 'สั่งเลย' }) {
-  const { id, title, author, price, image, description } = item || {};
+function BookCard({ item, onAction, onAddToCart, actionLabel = 'สั่งเลย' }) {
+  const { title, author, price, image, description } = item || {};
   const displayTitle = title || item?.name || 'Untitled';
   const displayAuthor = author || item?.subCategory || '';
   const displayPrice = price || item?.price || null;
 
   const handleAction = () => {
-    console.debug('BookCard: action clicked for', item && item.id);
-    // dispatch global add-to-cart so App can handle opening the cart
+    const detail = {
+      id: item && (item.id || item._id),
+      qty: 1,
+      item,
+    };
+
+    // 1) ยิง global event ให้ App ฟังแล้วเรียก addToCart
+    let dispatched = false;
     try {
-      const detail = { id: item && (item.id || item._id), item, qty: 1 };
-      console.debug('BookCard: dispatching tltb:add-to-cart', detail);
-      window.dispatchEvent(new CustomEvent('tltb:add-to-cart', { detail }));
-      console.debug('BookCard: dispatched tltb:add-to-cart');
+      window.dispatchEvent(
+        new CustomEvent('tltb:add-to-cart', { detail })
+      );
+      dispatched = true;
+      console.debug('BookCard: dispatched tltb:add-to-cart', detail);
     } catch (err) {
-      // ignore if CustomEvent isn't available in environment
+      console.warn('BookCard: dispatch failed', err);
     }
-    if (onAction) onAction(item);
+
+    // 2) ถ้าอยากให้แน่ใจว่า cart ถูกอัปเดต ให้ fallback ผ่าน props ด้วย
+    if (typeof onAddToCart === 'function') {
+      onAddToCart(item);
+    } else if (!dispatched && typeof onAction === 'function') {
+      // ใช้ onAction เป็น fallback ถ้าไม่ได้ยิง event
+      onAction(item);
+    } else if (!onAddToCart && !onAction) {
+      console.log('add to cart (card fallback):', item);
+    }
   };
 
-  // prefer explicit image field, otherwise try to map by item fields
+  // เลือกรูป
   const resolved = image || getImagePathByName(item?.name || displayTitle);
-  // try smarter resolver using subCategory/category/tags
-  const resolved2 = resolved || getImagePathByName(item?.subCategory) || getImagePathByName(item?.category);
-  // final attempt: use helper that inspects tags and other fields
+  const resolved2 =
+    resolved ||
+    getImagePathByName(item?.subCategory) ||
+    getImagePathByName(item?.category);
   const best = resolved2 || getImageForItem(item);
   const fallback = '/images/food-cover/toast_milk.png';
   const imageSrc = (process.env.PUBLIC_URL || '') + (best || fallback);
@@ -47,9 +66,14 @@ function BookCard({ item, onAction, actionLabel = 'สั่งเลย' }) {
           <div className="image-surface" />
         )}
 
-        {/* featured / new badge: prefer showing "ใหม่" when item is new, otherwise show "แนะนำ" for featured items */}
+        {/* badge ใหม่ / แนะนำ */}
         {item && (
-          ((item.isNew === true) || (item.tags || []).some(t => String(t).toLowerCase() === 'ใหม่' || String(t).toLowerCase() === 'new')) ? (
+          ((item.isNew === true) ||
+            (item.tags || []).some(
+              (t) =>
+                String(t).toLowerCase() === 'ใหม่' ||
+                String(t).toLowerCase() === 'new'
+            )) ? (
             <div className="category-badge">ใหม่</div>
           ) : item.featured ? (
             <div className="category-badge">แนะนำ</div>
@@ -64,29 +88,34 @@ function BookCard({ item, onAction, actionLabel = 'สั่งเลย' }) {
 
         {displayAuthor && <p className="card-desc">{displayAuthor}</p>}
 
-        {description && <p className="card-desc" style={{ marginTop: '0.4rem' }}>{description}</p>}
+        {description && (
+          <p className="card-desc" style={{ marginTop: '0.4rem' }}>
+            {description}
+          </p>
+        )}
 
         <div className="price-row">
           <div className="price-block">
-            <span className="price-main">{displayPrice ? `${displayPrice} บาท` : ''}</span>
+            <span className="price-main">
+              {displayPrice ? `${displayPrice} บาท` : ''}
+            </span>
           </div>
 
-          {onAction ? (
+          {/* ถ้ามี onAddToCart หรือ onAction -> ใช้ปุ่ม
+              ถ้าไม่ส่งอะไรมาเลย -> ใช้ลิงก์ไป /cart (โหมดเก่า) */}
+          {(onAddToCart || onAction) ? (
             <button
               type="button"
-              onClick={() => {
-                handleAction();
-              }}
+              onClick={handleAction}
               className="order-btn"
             >
               {actionLabel}
             </button>
           ) : (
             <Link
-              to={`/menu/${id}`}
+              to={`/cart`}
               className="order-btn"
               onClick={(e) => {
-                // still dispatch add-to-cart, allow navigation to proceed
                 handleAction();
               }}
             >

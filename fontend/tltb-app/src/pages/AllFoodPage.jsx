@@ -71,7 +71,6 @@ function AllFoodPage({ onAddToCart }) {
                     <th style={{ padding: '1rem', textAlign: 'left', fontWeight: '700', borderBottom: '2px solid var(--cafe-espresso)' }}>ชื่อเมนู</th>
                     <th style={{ padding: '1rem', textAlign: 'left', fontWeight: '700', borderBottom: '2px solid var(--cafe-espresso)' }}>หมวดหมู่</th>
                     <th style={{ padding: '1rem', textAlign: 'left', fontWeight: '700', borderBottom: '2px solid var(--cafe-espresso)' }}>ราคา</th>
-                    <th style={{ padding: '1rem', textAlign: 'center', fontWeight: '700', borderBottom: '2px solid var(--cafe-espresso)' }}>สถานะ</th>
                       <th style={{ padding: '1rem', textAlign: 'center', fontWeight: '700', borderBottom: '2px solid var(--cafe-espresso)' }}>จัดการ</th>
                   </tr>
                 </thead>
@@ -91,35 +90,7 @@ function AllFoodPage({ onAddToCart }) {
                         <td style={{ padding: '1rem', color: 'var(--cafe-espresso)', fontWeight: '600' }}>{item.name}</td>
                         <td style={{ padding: '1rem', color: 'var(--cafe-mocha)' }}>{item.category}</td>
                         <td style={{ padding: '1rem', color: 'var(--cafe-mocha)', fontWeight: '600' }}>฿{item.price}</td>
-                        <td style={{ padding: '1rem', textAlign: 'center' }}>
-                          <span style={{
-                            display: 'inline-block',
-                            padding: '0.25rem 0.75rem',
-                            borderRadius: '999px',
-                            fontSize: '0.8rem',
-                            fontWeight: '600',
-                            backgroundColor: item.isAvailable ? '#e8f5e9' : '#ffebee',
-                            color: item.isAvailable ? '#2e7d32' : '#c62828'
-                          }}>
-                            {item.isAvailable ? 'มี' : 'หมด'}
-                          </span>
-                        </td>
-                          <td style={{ padding: '1rem', textAlign: 'center', display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
-                          <button
-                            onClick={() => {
-                              // Dispatch a global event to add this item to cart (App listens and will open cart)
-                              try {
-                                window.dispatchEvent(new CustomEvent('tltb:add-to-cart', { detail: { id: item.id, qty: 1, item } }));
-                              } catch (err) {
-                                // fallback to calling prop if dispatch isn't available
-                                if (typeof onAddToCart === 'function') onAddToCart(item);
-                                else console.log('add to cart (all):', item);
-                              }
-                            }}
-                            className="btn btn-primary small-btn"
-                          >
-                            สั่งเลย
-                          </button>
+                        <td style={{ padding: '1rem', textAlign: 'center', display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
                           <button onClick={() => navigate(`/admin/edit-food/${item.id}`)} className="btn btn-primary small-btn">แก้ไข</button>
                           <button
                             onClick={() => {
@@ -152,7 +123,7 @@ function AllFoodPage({ onAddToCart }) {
                     ))
                   ) : (
                     <tr>
-                        <td colSpan="6" style={{ padding: '2rem', textAlign: 'center', color: 'var(--cafe-mocha)' }}>
+                        <td colSpan="4" style={{ padding: '2rem', textAlign: 'center', color: 'var(--cafe-mocha)' }}>
                         ไม่พบอาหารที่ค้นหา
                       </td>
                     </tr>

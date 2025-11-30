@@ -76,6 +76,7 @@
   background: radial-gradient(circle at 30% 22%, rgba(0,0,0,0.56) 0%, rgba(0,0,0,0.36) 28%, rgba(0,0,0,0.20) 54%, rgba(0,0,0,0.08) 84%),
               linear-gradient(120deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.08) 70%);
   mix-blend-mode: multiply;
+  pointer-events: none;
 }
 
 /* ข้อความบน hero */
@@ -223,6 +224,7 @@
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at top, rgba(253,233,201,0.6) 0, rgba(248,244,225,0.45) 55%);
+  pointer-events: none;
 }
 
 /* badge “แนะนำ” */

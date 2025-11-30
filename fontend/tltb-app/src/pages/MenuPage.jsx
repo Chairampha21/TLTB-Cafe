@@ -7,6 +7,17 @@ function MenuPage({ onAddToCart }) {
   const [category, setCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
 
+  const handleAdd = (item) => {
+    try {
+      window.dispatchEvent(new CustomEvent('tltb:add-to-cart', { detail: { id: item.id, qty: 1, item } }));
+    } catch (err) {
+      // ignore if CustomEvent isn't available
+    }
+
+    if (onAddToCart) onAddToCart(item);
+    else console.log('add to cart (menu):', item);
+  };
+
   const items = getMenuByCategory(category);
   const filteredItems = items.filter((item) =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -54,7 +65,7 @@ function MenuPage({ onAddToCart }) {
 
             <div className="menu-grid">
               {filteredItems.map((item) => (
-                <BookCard key={item.id} item={item} onAction={() => onAddToCart && onAddToCart(item)} />
+                <BookCard key={item.id} item={item} onAction={() => handleAdd(item)} />
               ))}
             </div>
           </div>

@@ -1,3 +1,4 @@
+// src/pages/HomePage.jsx
 import { Link } from 'react-router-dom';
 import "../components/HomePage.css";
 import heroBg from "../coffee-shop-1448x543.webp";
@@ -8,10 +9,8 @@ import SiteFooter from '../components/SiteFooter';
 import "../components/MenuPage.css"; // reuse card/grid styles for recommended
 
 function HomePage({ onAddToCart, onOpenAuth }) {
-  // recommended: pull featured items from data file
   const recommended = getFeaturedMenu(4);
 
-  // newest items: sort by id descending (higher id = newer), only available
   const newest = [...menuItems]
     .filter((i) => i.isAvailable)
     .sort((a, b) => b.id - a.id)
@@ -19,7 +18,7 @@ function HomePage({ onAddToCart, onOpenAuth }) {
 
   const handleAdd = (item) => {
     if (onAddToCart) onAddToCart(item);
-    else console.log('add to cart (homepage):', item);
+    else console.log('add to cart (homepage fallback):', item);
   };
 
   return (
@@ -34,7 +33,6 @@ function HomePage({ onAddToCart, onOpenAuth }) {
             backgroundRepeat: 'no-repeat'
           }}
         >
-
           <h1 className="hero-top-title">สั่งเครื่องดื่มและอาหารง่าย ๆ ที่ TLTB Café</h1>
           <Link to="/menu" className="order-btn hero-cta">ดูเมนูทั้งหมด</Link>
         </section>
@@ -42,36 +40,45 @@ function HomePage({ onAddToCart, onOpenAuth }) {
         {/* Recommended section */}
         <section className="menu-grid-wrapper" style={{ marginTop: '1.25rem' }}>
           <div className="menu-container max-w-6xl mx-auto px-4">
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
               <h2 style={{ margin: 0, color: 'var(--cafe-espresso)', fontSize: '1.15rem' }}>เมนูแนะนำ</h2>
             </div>
 
             <div className="menu-grid">
               {recommended.map((item) => (
-                <BookCard key={item.id} item={item} onAction={() => handleAdd(item)} actionLabel="สั่งเลย" />
+                <BookCard
+                  key={item.id}
+                  item={item}
+                  onAddToCart={handleAdd}
+                  actionLabel="สั่งเลย"
+                />
               ))}
             </div>
           </div>
         </section>
 
-          {/* New menu section (เมนูใหม่) */}
-          <section className="menu-grid-wrapper" style={{ marginTop: '1.25rem' }}>
-            <div className="menu-container max-w-6xl mx-auto px-4">
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
-                <h2 style={{ margin: 0, color: 'var(--cafe-espresso)', fontSize: '1.15rem' }}>เมนูใหม่</h2>
-              </div>
-
-              <div className="menu-grid">
-                {newest.map((item) => {
-                  // mark rendered newest items as new so BookCard shows the "ใหม่" badge
-                  const itemWithNew = { ...item, isNew: true };
-                  return (
-                    <BookCard key={item.id} item={itemWithNew} onAction={() => handleAdd(item)} actionLabel="สั่งเลย" />
-                  );
-                })}
-              </div>
+        {/* New menu section (เมนูใหม่) */}
+        <section className="menu-grid-wrapper" style={{ marginTop: '1.25rem' }}>
+          <div className="menu-container max-w-6xl mx-auto px-4">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
+              <h2 style={{ margin: 0, color: 'var(--cafe-espresso)', fontSize: '1.15rem' }}>เมนูใหม่</h2>
             </div>
-          </section>
+
+            <div className="menu-grid">
+              {newest.map((item) => {
+                const itemWithNew = { ...item, isNew: true };
+                return (
+                  <BookCard
+                    key={item.id}
+                    item={itemWithNew}
+                    onAddToCart={handleAdd}
+                    actionLabel="สั่งเลย"
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </section>
 
         {/* Reviews section shown under New menu */}
         <ReviewsSection onOpenAuth={onOpenAuth} />
