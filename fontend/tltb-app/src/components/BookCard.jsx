@@ -38,14 +38,16 @@ function BookCard({ item, onAction, onAddToCart, actionLabel = 'สั่งเ�
       console.warn('BookCard: dispatch failed', err);
     }
 
-    // 2) ถ้าอยากให้แน่ใจว่า cart ถูกอัปเดต ให้ fallback ผ่าน props ด้วย
-    if (typeof onAddToCart === 'function') {
-      onAddToCart(item);
-    } else if (!dispatched && typeof onAction === 'function') {
-      // ใช้ onAction เป็น fallback ถ้าไม่ได้ยิง event
-      onAction(item);
-    } else if (!onAddToCart && !onAction) {
-      console.log('add to cart (card fallback):', item);
+    // 2) ถ้า dispatch สำเร็จแล้ว ไม่ต้องเรียก fallback อีกครั้ง (ป้องกันการเพิ่มซ้ำ)
+    if (!dispatched) {
+      if (typeof onAddToCart === 'function') {
+        onAddToCart(item);
+      } else if (typeof onAction === 'function') {
+        // ใช้ onAction เป็น fallback ถ้าไม่ได้ยิง event
+        onAction(item);
+      } else {
+        console.log('add to cart (card fallback):', item);
+      }
     }
   };
 
