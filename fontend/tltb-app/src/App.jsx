@@ -22,7 +22,9 @@ function App() {
     // Immediately add one unit of the clicked item to cart
     console.log('App: quick add', item && item.id);
     if (!item) return;
-    addToCart(item.id, 1);
+    // if item provides an explicit image, forward it as override
+    const imageOverride = item.image || item.imageSrc || null;
+    addToCart(item.id, 1, imageOverride);
   };
 
   // Listen for global add-to-cart events so other components can dispatch without direct props
@@ -30,13 +32,13 @@ function App() {
 
   
 
-  const addToCart = (variantId, qty = 1) => {
+  const addToCart = (variantId, qty = 1, imageOverride = null) => {
     const variant = getMenuItemById(variantId);
     if (!variant) return;
     setCart((c) => {
       const existing = c.find((x) => x.id === variant.id);
       if (existing) return c.map((x) => (x.id === variant.id ? { ...x, qty: x.qty + qty } : x));
-      return [...c, { id: variant.id, name: variant.name, price: variant.price, image: variant.image, qty }];
+      return [...c, { id: variant.id, name: variant.name, price: variant.price, image: imageOverride || variant.image, qty }];
     });
     // ensure cart panel opens so user sees the item added
     setCartOpen(true);
@@ -62,8 +64,10 @@ function App() {
       if (!d) return;
       const id = d.id || (d.item && d.item.id);
       const qty = d.qty || 1;
-      console.debug('App: handling add-to-cart for id=', id, 'qty=', qty);
-      if (id) addToCart(id, qty);
+      // accept optional image override from the event detail
+      const imageOverride = d.image || (d.item && (d.item.image || d.item.imageSrc)) || null;
+      console.debug('App: handling add-to-cart for id=', id, 'qty=', qty, 'imageOverride=', imageOverride);
+      if (id) addToCart(id, qty, imageOverride);
     };
     window.addEventListener('tltb:add-to-cart', handler);
     return () => window.removeEventListener('tltb:add-to-cart', handler);

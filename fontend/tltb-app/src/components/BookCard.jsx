@@ -22,6 +22,8 @@ function BookCard({ item, onAction, onAddToCart, actionLabel = 'สั่งเ�
       id: item && (item.id || item._id),
       qty: 1,
       item,
+      // include resolved image path so listeners can use the correct image
+      image: imageSrc,
     };
 
     // 1) ยิง global event ให้ App ฟังแล้วเรียก addToCart
