@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import '../components/AllFoodPage.css';
-import { menuItems } from '../data/menuData';
+
+const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8080';
 
 function EditFoodPage() {
   const { id } = useParams();
@@ -17,19 +18,33 @@ function EditFoodPage() {
   });
 
   useEffect(() => {
-    const item = menuItems.find((m) => m.id === itemId);
-    if (!item) {
-      Swal.fire({ title: 'ไม่พบข้อมูล', text: 'ไม่พบเมนูที่ต้องการแก้ไข', icon: 'error' });
-      navigate(-1);
-      return;
+    let mounted = true;
+    async function load() {
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/menu`);
+        if (!res.ok) throw new Error('fetch fail');
+        const data = await res.json();
+        const item = data.find((m) => Number(m.id) === itemId);
+        if (!item) {
+          Swal.fire({ title: 'ไม่พบข้อมูล', text: 'ไม่พบเมนูที่ต้องการแก้ไข', icon: 'error' });
+          navigate(-1);
+          return;
+        }
+        if (!mounted) return;
+        setForm({
+          name: item.name || '',
+          category: item.category || '',
+          price: item.price || 0,
+          description: item.description || '',
+        });
+      } catch (err) {
+        console.error('Load item failed', err);
+        Swal.fire({ title: 'ข้อผิดพลาด', text: 'โหลดข้อมูลล้มเหลว', icon: 'error' });
+        navigate(-1);
+      }
     }
-
-    setForm({
-      name: item.name || '',
-      category: item.category || '',
-      price: item.price || 0,
-      description: item.description || '',
-    });
+    load();
+    return () => { mounted = false };
   }, [itemId, navigate]);
 
   const handleChange = (e) => {
@@ -47,27 +62,39 @@ function EditFoodPage() {
       showCancelButton: true,
       confirmButtonText: 'บันทึก',
       cancelButtonText: 'ยกเลิก',
-    }).then((result) => {
+    }).then(async (result) => {
       if (!result.isConfirmed) return;
+      try {
+        // We need the original name to identify the row(s) to update. Fetch current item
+        const resGet = await fetch(`${API_BASE}/api/v1/menu`);
+        if (!resGet.ok) throw new Error('fetch fail');
+        const data = await resGet.json();
+        const item = data.find((m) => Number(m.id) === itemId);
+        if (!item) throw new Error('not found');
 
-      const idx = menuItems.findIndex((m) => m.id === itemId);
-      if (idx === -1) {
+        const payload = {
+          subCategory: form.category || item.subCategory || '',
+          name: form.name,
+          price: Number(form.price) || 0,
+          description: form.description || '',
+        };
+
+        const sectionPlural = item.section ? `${item.section}s` : 'foods';
+        const res = await fetch(`${API_BASE}/api/v1/${sectionPlural}/${encodeURIComponent(item.name)}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error('update failed');
+
+        // notify list to refresh
+        window.dispatchEvent(new Event('menuUpdated'));
+        Swal.fire({ title: 'บันทึกสำเร็จ', icon: 'success', timer: 1200, showConfirmButton: false });
+        navigate(-1);
+      } catch (err) {
+        console.error('Save failed', err);
         Swal.fire({ title: 'ผิดพลาด', text: 'ไม่สามารถบันทึกข้อมูล', icon: 'error' });
-        return;
       }
-
-      // Preserve existing isAvailable value; update other fields
-      menuItems[idx] = {
-        ...menuItems[idx],
-        name: form.name,
-        category: form.category,
-        price: form.price,
-        isAvailable: typeof menuItems[idx].isAvailable === 'boolean' ? menuItems[idx].isAvailable : true,
-        description: form.description,
-      };
-
-      Swal.fire({ title: 'บันทึกสำเร็จ', icon: 'success', timer: 1200, showConfirmButton: false });
-      navigate(-1);
     });
   };
 

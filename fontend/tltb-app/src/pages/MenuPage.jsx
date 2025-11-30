@@ -1,11 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../components/MenuPage.css';
 import BookCard from '../components/BookCard';
-import { menuCategories, getMenuByCategory } from '../data/menuData';
+
+const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8080';
 
 function MenuPage({ onAddToCart }) {
   const [category, setCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [items, setItems] = useState([]);
+  const [categories, setCategories] = useState(['all']);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => { fetchMenu(); }, []);
+
+  async function fetchMenu() {
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/v1/menu`);
+      if (!res.ok) throw new Error('fetch error');
+      const data = await res.json();
+      setItems(data || []);
+      const cats = ['all', ...Array.from(new Set((data || []).map(it => it.category).filter(Boolean)))];
+      setCategories(cats);
+    } catch (err) {
+      console.error('Failed to fetch menu for menu page', err);
+      setItems([]);
+      setCategories(['all']);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const handleAdd = (item) => {
     try {
@@ -18,9 +42,9 @@ function MenuPage({ onAddToCart }) {
     else console.log('add to cart (menu):', item);
   };
 
-  const items = getMenuByCategory(category);
-  const filteredItems = items.filter((item) =>
-    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const itemsByCategory = category === 'all' ? items : items.filter(it => it.category === category || it.subCategory === category);
+  const filteredItems = (itemsByCategory || []).filter((item) =>
+    (item.name || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -52,21 +76,23 @@ function MenuPage({ onAddToCart }) {
             </div>
 
             <div className="categories" style={{ marginTop: '0.75rem', marginBottom: '1rem' }}>
-              {menuCategories.map((c) => (
+              {categories.map((c) => (
                 <button
-                  key={c.id}
-                  onClick={() => setCategory(c.id)}
-                  className={`category-pill ${category === c.id ? 'active' : ''}`}
+                  key={c}
+                  onClick={() => setCategory(c)}
+                  className={`category-pill ${category === c ? 'active' : ''}`}
                 >
-                  {c.name}
+                  {c === 'all' ? 'ทั้งหมด' : c}
                 </button>
               ))}
             </div>
 
             <div className="menu-grid">
-              {filteredItems.map((item) => (
-                <BookCard key={item.id} item={item} onAction={() => handleAdd(item)} />
-              ))}
+              {loading ? <div>กำลังโหลด...</div> : (
+                filteredItems.map((item) => (
+                  <BookCard key={item.id} item={item} onAction={() => handleAdd(item)} />
+                ))
+              )}
             </div>
           </div>
         </section>

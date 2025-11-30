@@ -1,19 +1,58 @@
 // src/pages/HomePage.jsx
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../components/HomePage.css";
 import heroBg from "../coffee-shop-1448x543.webp";
-import { getFeaturedMenu, menuItems } from "../data/menuData";
 import BookCard from '../components/BookCard';
 import ReviewsSection from '../components/ReviewsSection';
 import SiteFooter from '../components/SiteFooter';
 import "../components/MenuPage.css"; // reuse card/grid styles for recommended
 
-function HomePage({ onAddToCart, onOpenAuth }) {
-  const recommended = getFeaturedMenu(4);
+const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8080';
 
-  const newest = [...menuItems]
+function HomePage({ onAddToCart, onOpenAuth }) {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => { fetchMenu(); }, []);
+
+  async function fetchMenu() {
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/v1/menu`);
+      if (!res.ok) throw new Error('fetch error');
+      const data = await res.json();
+      setItems(data);
+    } catch (err) {
+      console.error('Failed to fetch menu for homepage', err);
+      setItems([]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // Deterministic recommended selection:
+  // - Prefer items with `featured === true`, sorted by newest (`id` desc)
+  // - If less than 4 featured items, fill remaining slots with newest available non-featured items
+  // Only consider drinks for the recommended section
+  const available = items.filter((i) => i.isAvailable && i.section === 'drink');
+  const featuredItems = available
+    .filter((i) => i.featured)
+    .sort((a, b) => (b.id || 0) - (a.id || 0));
+
+  let recommended = featuredItems.slice(0, 4);
+  if (recommended.length < 4) {
+    const need = 4 - recommended.length;
+    const fill = available
+      .filter((i) => !i.featured)
+      .sort((a, b) => (b.id || 0) - (a.id || 0))
+      .slice(0, need);
+    recommended = recommended.concat(fill);
+  }
+
+  const newest = [...items]
     .filter((i) => i.isAvailable)
-    .sort((a, b) => b.id - a.id)
+    .sort((a, b) => (b.id || 0) - (a.id || 0))
     .slice(0, 4);
 
   const handleAdd = (item) => {
@@ -45,14 +84,16 @@ function HomePage({ onAddToCart, onOpenAuth }) {
             </div>
 
             <div className="menu-grid">
-              {recommended.map((item) => (
-                <BookCard
-                  key={item.id}
-                  item={item}
-                  onAddToCart={handleAdd}
-                  actionLabel="สั่งเลย"
-                />
-              ))}
+              {loading ? <div>กำลังโหลด...</div> : (
+                recommended.map((item) => (
+                  <BookCard
+                    key={item.id}
+                    item={item}
+                    onAddToCart={handleAdd}
+                    actionLabel="สั่งเลย"
+                  />
+                ))
+              )}
             </div>
           </div>
         </section>
@@ -65,17 +106,19 @@ function HomePage({ onAddToCart, onOpenAuth }) {
             </div>
 
             <div className="menu-grid">
-              {newest.map((item) => {
-                const itemWithNew = { ...item, isNew: true };
-                return (
-                  <BookCard
-                    key={item.id}
-                    item={itemWithNew}
-                    onAddToCart={handleAdd}
-                    actionLabel="สั่งเลย"
-                  />
-                );
-              })}
+              {loading ? <div>กำลังโหลด...</div> : (
+                newest.map((item) => {
+                  const itemWithNew = { ...item, isNew: true };
+                  return (
+                    <BookCard
+                      key={item.id}
+                      item={itemWithNew}
+                      onAddToCart={handleAdd}
+                      actionLabel="สั่งเลย"
+                    />
+                  );
+                })
+              )}
             </div>
           </div>
         </section>

@@ -1,5 +1,4 @@
-nohup: ignoring input
-2025/11/30 18:10:29 ✅ Connected to PostgreSQL
+2025/11/30 21:03:32 ✅ Connected to PostgreSQL
 [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
 
 [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
@@ -24,33 +23,8 @@ nohup: ignoring input
 [GIN-debug] GET    /api/v1/desserts/:name    --> main.GetDessertsByName (4 handlers)
 [GIN-debug] PUT    /api/v1/desserts/:name    --> main.UpdateDessertsByName (4 handlers)
 [GIN-debug] DELETE /api/v1/desserts/:name    --> main.DeleteDessertsByName (4 handlers)
-2025/11/30 18:10:29 🚀 Server running at :8080
+2025/11/30 21:03:32 🚀 Server running at :8080
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://github.com/gin-gonic/gin/blob/master/docs/doc.md#dont-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8080
-[GIN] 2025/11/30 - 18:11:00 | 200 |     299.899µs |             ::1 | GET      "/health"
-[GIN] 2025/11/30 - 18:11:00 | 200 |    4.364971ms |             ::1 | GET      "/api/v1/menu"
-[GIN] 2025/11/30 - 18:11:32 | 200 |    2.780816ms |             ::1 | GET      "/api/v1/menu"
-[GIN] 2025/11/30 - 18:11:32 | 200 |    1.506479ms |             ::1 | GET      "/api/v1/menu"
-[GIN] 2025/11/30 - 18:11:39 | 200 |    1.610144ms |             ::1 | GET      "/api/v1/menu"
-[GIN] 2025/11/30 - 18:11:39 | 200 |    1.769039ms |             ::1 | GET      "/api/v1/menu"
-[GIN] 2025/11/30 - 18:14:03 | 200 |    4.987474ms |             ::1 | GET      "/api/v1/menu"
-[GIN] 2025/11/30 - 18:14:03 | 200 |     6.33152ms |             ::1 | GET      "/api/v1/menu"
-[GIN] 2025/11/30 - 18:14:03 | 404 |       1.403µs |       127.0.0.1 | GET      "/images/food-cover/honey_lemo_ soda.png"
-[GIN] 2025/11/30 - 18:14:04 | 404 |       1.513µs |       127.0.0.1 | GET      "/images/food-cover/red_syrup_honey lemon.png"
-[GIN] 2025/11/30 - 18:14:14 | 200 |     4.36985ms |             ::1 | GET      "/api/v1/menu"
-[GIN] 2025/11/30 - 18:14:17 | 200 |    2.859293ms |             ::1 | GET      "/api/v1/menu"
-[GIN] 2025/11/30 - 18:14:20 | 404 |       1.543µs |       127.0.0.1 | GET      "/images/food-cover/honey_lemo_ soda.png"
-[GIN] 2025/11/30 - 18:14:20 | 404 |       1.302µs |       127.0.0.1 | GET      "/images/food-cover/red_syrup_honey lemon.png"
-[GIN] 2025/11/30 - 18:14:32 | 404 |       1.844µs |       127.0.0.1 | GET      "/images/food-cover/honey_lemo_ soda.png"
-[GIN] 2025/11/30 - 18:14:32 | 404 |         691ns |       127.0.0.1 | GET      "/images/food-cover/red_syrup_honey lemon.png"
-[GIN] 2025/11/30 - 18:14:41 | 404 |       1.553µs |       127.0.0.1 | GET      "/images/food-cover/honey_lemo_ soda.png"
-[GIN] 2025/11/30 - 18:14:41 | 404 |         681ns |       127.0.0.1 | GET      "/images/food-cover/red_syrup_honey lemon.png"
-[GIN] 2025/11/30 - 18:14:50 | 200 |     1.62993ms |             ::1 | GET      "/api/v1/menu"
-[GIN] 2025/11/30 - 18:14:50 | 200 |    1.418736ms |             ::1 | GET      "/api/v1/menu"
-[GIN] 2025/11/30 - 18:14:50 | 404 |       1.372µs |       127.0.0.1 | GET      "/images/food-cover/honey_lemo_ soda.png"
-[GIN] 2025/11/30 - 18:14:50 | 404 |         581ns |       127.0.0.1 | GET      "/images/food-cover/red_syrup_honey lemon.png"
-[GIN] 2025/11/30 - 18:17:14 | 200 |    2.331639ms |             ::1 | GET      "/api/v1/menu"
-[GIN] 2025/11/30 - 18:17:14 | 200 |    3.586288ms |             ::1 | GET      "/api/v1/menu"
-[GIN] 2025/11/30 - 18:17:15 | 404 |       1.583µs |       127.0.0.1 | GET      "/images/food-cover/honey_lemo_ soda.png"
-[GIN] 2025/11/30 - 18:17:15 | 404 |         961ns |       127.0.0.1 | GET      "/images/food-cover/red_syrup_honey lemon.png"
+[GIN-debug] [ERROR] listen tcp :8080: bind: address already in use

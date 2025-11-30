@@ -170,23 +170,44 @@ func HealthCheck(c *gin.Context) {
 // ======================= DATABASE =======================
 
 func initDB() {
+	// Support both DB_* and POSTGRES_* environment variable names.
+	// Priority: DB_* -> POSTGRES_* -> defaults
 	host := os.Getenv("DB_HOST")
+	if host == "" {
+		host = os.Getenv("POSTGRES_HOST")
+	}
 	if host == "" {
 		host = "localhost"
 	}
+
 	port := os.Getenv("DB_PORT")
+	if port == "" {
+		port = os.Getenv("POSTGRES_PORT")
+	}
 	if port == "" {
 		port = "5432"
 	}
+
 	user := os.Getenv("DB_USER")
+	if user == "" {
+		user = os.Getenv("POSTGRES_USER")
+	}
 	if user == "" {
 		user = "drinks_user"
 	}
+
 	password := os.Getenv("DB_PASSWORD")
+	if password == "" {
+		password = os.Getenv("POSTGRES_PASSWORD")
+	}
 	if password == "" {
 		password = "your_strong_password"
 	}
+
 	name := os.Getenv("DB_NAME")
+	if name == "" {
+		name = os.Getenv("POSTGRES_DB")
+	}
 	if name == "" {
 		name = "drinks"
 	}
@@ -602,6 +623,8 @@ func UpdateDrinksByName(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"updated": affected})
 }
 
+
+
 // DeleteDrinksByName godoc
 // @Summary      Delete drinks by name
 // @Tags         Drinks
@@ -863,6 +886,7 @@ func UpdateFoodsByName(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"updated": affected})
 }
 
+ 
 // DeleteFoodsByName godoc
 // @Summary      Delete foods by name
 // @Tags         Foods
@@ -1124,6 +1148,7 @@ func UpdateDessertsByName(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"updated": affected})
 }
 
+ 
 // DeleteDessertsByName godoc
 // @Summary      Delete desserts by name
 // @Tags         Desserts

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import '../components/AllFoodPage.css';
-import { menuItems } from '../data/menuData';
+
+const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8080';
 
 function AddPage() {
 	const navigate = useNavigate();
@@ -29,31 +30,30 @@ function AddPage() {
 			showCancelButton: true,
 			confirmButtonText: 'เพิ่ม',
 			cancelButtonText: 'ยกเลิก',
-		}).then((result) => {
+		}).then(async (result) => {
 			if (result.isConfirmed) {
-				// generate a new id (max + 1)
-				const maxId = menuItems.reduce((m, it) => Math.max(m, it.id || 0), 0);
-				const newId = maxId + 1;
-
-				const newItem = {
-					id: newId,
-					section: 'food',
-					subCategory: form.category || '',
-					name: form.name,
-					category: form.category,
-					price: Number(form.price) || 0,
-					originalPrice: 0,
-					image: '',
-					description: form.description || '',
-					isAvailable: true,
-					tags: [],
-					featured: false,
-				};
-
-				menuItems.push(newItem);
-
-				Swal.fire({ title: 'เพิ่มเมนูสำเร็จ', icon: 'success', timer: 1200, showConfirmButton: false });
-				navigate('/admin/all-food');
+								// POST to backend
+								try {
+									const payload = {
+										subCategory: form.category || '',
+										name: form.name,
+										price: Number(form.price) || 0,
+										description: form.description || '',
+									};
+									const res = await fetch(`${API_BASE}/api/v1/foods`, {
+										method: 'POST',
+										headers: { 'Content-Type': 'application/json' },
+										body: JSON.stringify(payload),
+									});
+									if (!res.ok) throw new Error('create failed');
+									// notify list to refresh
+									window.dispatchEvent(new Event('menuUpdated'));
+									Swal.fire({ title: 'เพิ่มเมนูสำเร็จ', icon: 'success', timer: 1200, showConfirmButton: false });
+									navigate('/admin/all-food');
+								} catch (err) {
+									console.error('Create failed', err);
+									Swal.fire({ title: 'เกิดข้อผิดพลาด', text: 'ไม่สามารถเพิ่มเมนูได้', icon: 'error' });
+								}
 			}
 		});
 	};

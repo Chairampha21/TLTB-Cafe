@@ -25,7 +25,9 @@ function App() {
     if (!item) return;
     // if item provides an explicit image, forward it as override
     const imageOverride = item.image || item.imageSrc || null;
-    addToCart(item.id, 1, imageOverride);
+    // pass the full item so items fetched from backend (not present in static menuData)
+    // can be added directly
+    addToCart(item, 1, imageOverride);
   };
 
   // Listen for global add-to-cart events so other components can dispatch without direct props
@@ -33,8 +35,14 @@ function App() {
 
   
 
-  const addToCart = (variantId, qty = 1, imageOverride = null) => {
-    const variant = getMenuItemById(variantId);
+  const addToCart = (variantOrId, qty = 1, imageOverride = null) => {
+    // variantOrId can be either an item object (from backend) or an id looked up in menuData
+    let variant = null;
+    if (variantOrId && typeof variantOrId === 'object') {
+      variant = variantOrId;
+    } else if (variantOrId) {
+      variant = getMenuItemById(variantOrId);
+    }
     if (!variant) return;
     setCart((c) => {
       const existing = c.find((x) => x.id === variant.id);
@@ -63,12 +71,14 @@ function App() {
       console.debug('App: received tltb:add-to-cart event', e && e.detail);
       const d = e && e.detail ? e.detail : null;
       if (!d) return;
-      const id = d.id || (d.item && d.item.id);
       const qty = d.qty || 1;
-      // accept optional image override from the event detail
-      const imageOverride = d.image || (d.item && (d.item.image || d.item.imageSrc)) || null;
+      // prefer passing the full item object if available (works for backend-fetched items)
+      const item = d.item || null;
+      const imageOverride = d.image || (item && (item.image || item.imageSrc)) || null;
+      const id = d.id || (item && item.id) || null;
       console.debug('App: handling add-to-cart for id=', id, 'qty=', qty, 'imageOverride=', imageOverride);
-      if (id) addToCart(id, qty, imageOverride);
+      if (item) addToCart(item, qty, imageOverride);
+      else if (id) addToCart(id, qty, imageOverride);
     };
     window.addEventListener('tltb:add-to-cart', handler);
     return () => window.removeEventListener('tltb:add-to-cart', handler);
